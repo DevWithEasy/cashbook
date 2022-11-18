@@ -3,12 +3,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import Header from '../../components/Header';
+import Trying from '../../components/Trying';
 import { signup } from '../../libs/AllUserAction';
 import img from '../../public/image/signup.png';
 import handleInput from '../../utils/handleInput';
 
 export default function Signup(){
     const router = useRouter()
+    const [loading,setLoading] = useState(false)
     const [value,setValue] = useState({
         name :'',
         email :'',
@@ -25,7 +27,7 @@ export default function Signup(){
             <Header/>
             <div className="signup_area">
                 <div className="image">
-                    <img src={img} alt="signup" className='w-40 h-40 bg-red-300'/>
+                    <Image src={img} alt="signup"/>
                     {/* <Image src={img} alt="Logo"/> */}
                 </div>
                 <form className="input" onSubmit={(e)=>signup(e,value,router)}>
@@ -55,6 +57,9 @@ export default function Signup(){
                             <input type="submit" value="SIGNUP"/>
                         </div>
                         <p className='text-center'>Already have an account? <Link href="/user/signin"><a className='font bold text-blue-500'>Signin</a></Link></p>
+                        {
+                            loading && <Trying text='Loging Please wait'/>
+                        }
                     </div>
                 </form>
             </div>

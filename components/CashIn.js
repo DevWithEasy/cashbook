@@ -36,7 +36,7 @@ const CashIn = ({id,setAdd}) => {
                     {
                         loading && <Trying text='Creating'/>
                     }
-                    <button className='in' onClick={()=>createEntryOther(id,user._id,value,setValue,setLoading,dispatch,addEntry)}>ADD & MORE</button>
+                    <button className='in' onClick={()=>createEntryOther(id,user._id,value,setValue,"Credit",setLoading,dispatch,addEntry)}>ADD & MORE</button>
                     <button className='in' onClick={()=>createEntry(value,setAdd,setLoading,dispatch,addEntry)}>ADD</button>
                 </div>
             </div>

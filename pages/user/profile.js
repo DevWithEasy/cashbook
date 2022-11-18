@@ -1,13 +1,11 @@
-import axios from "axios";
-import {AiOutlineCamera} from "react-icons/ai";
 import { useState } from "react";
+import { Toaster } from 'react-hot-toast';
+import { AiOutlineCamera } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/Header";
 import UpdateProfile from "../../components/UpdateProfile";
-import { login } from "../../store/slice/authSlice";
 import UpdateProfilePhoto from "../../components/UpdateProfilePhoto";
 import handleInput from "../../utils/handleInput";
-import Trying from "../../components/Trying";
 
 export default function Profile(){
     const user = useSelector(state=> state.auth.user)
@@ -29,8 +27,6 @@ export default function Profile(){
         }
         fileReader.readAsDataURL(e.target.files[0])
     }
-
-    
     return(
         <div className="profile">
             <Header/>
@@ -67,6 +63,7 @@ export default function Profile(){
             {
                 updatePhoto && <UpdateProfilePhoto setUpdatePhoto={setUpdatePhoto} handleFile={handleFile} file={file} image={image} />
             }
+            <Toaster/>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from "react";
+import { Toaster } from 'react-hot-toast';
 import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus, AiOutlineSetting } from 'react-icons/ai';
 import { MdDriveFileRenameOutline } from 'react-icons/md';
 import { useDispatch, useSelector } from "react-redux";
@@ -96,6 +97,7 @@ export default function Books(){
             {
                 updateBook && <UpdateBook setUpdateBook={setUpdateBook}/>
             }
+            <Toaster/>
         </div>
     )
 }

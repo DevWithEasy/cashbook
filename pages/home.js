@@ -1,10 +1,9 @@
-import axios from 'axios';
-import Head from 'next/head'
+import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import {AiOutlinePlusCircle} from 'react-icons/ai';
-import {BsBookHalf} from 'react-icons/bs';
+import { useEffect, useState } from 'react';
+import { Toaster } from 'react-hot-toast';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
+import { BsBookHalf } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import AddBook from '../components/AddBook';
 import Header from '../components/Header';
@@ -60,6 +59,7 @@ export default function Home() {
         {
           add && <AddBook setAdd={setAdd}/>
         }
+        <Toaster/>
       </div>
     </div>
   )

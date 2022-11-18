@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createEntry, createEntryOther } from '../libs/allEntryAction';
 import { addEntry } from '../store/slice/bookSlice';
@@ -28,16 +27,16 @@ const CashOut = ({id,setOut}) => {
                 <hr />
                 <div className="input">
                     <label htmlFor="">Amount</label>
-                    <input type="number" name="amount" placeholder='e.g- 100' onChange={(e)=>handleInput(e,value,setValue)}/>
+                    <input type="number" name="amount" placeholder='e.g- 100' value={value?.amount} onChange={(e)=>handleInput(e,value,setValue)}/>
                     <label htmlFor="">Remarks</label>
-                    <input type="text" name="remark" placeholder='e.g- Rent Bus' onChange={(e)=>handleInput(e,value,setValue)}/>
+                    <input type="text" name="remark" placeholder='e.g- Rent Bus' value={value?.remark} onChange={(e)=>handleInput(e,value,setValue)}/>
                 </div>
                 <hr />
                 <div className="submit">
                     {
                         loading && <Trying text='Creating'/>
                     }
-                    <button className='out' onClick={()=>createEntryOther(id,user._id,value,setValue,setLoading,dispatch,addEntry)}>ADD & MORE</button>
+                    <button className='out' onClick={()=>createEntryOther(id,user._id,value,setValue,"Debit",setLoading,dispatch,addEntry)}>ADD & MORE</button>
                     <button className='out' onClick={()=>createEntry(value,setOut,setLoading,dispatch,addEntry)}>ADD</button>
                 </div>
             </div>

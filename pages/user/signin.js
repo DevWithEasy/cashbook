@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Header from '../../components/Header';
+import Trying from '../../components/Trying';
 import { signin } from '../../libs/AllUserAction';
 import img from '../../public/image/login.png';
 import { login } from '../../store/slice/authSlice';
@@ -12,6 +13,7 @@ import handleInput from '../../utils/handleInput';
 export default function Signin(){
     const router = useRouter()
     const dispatch = useDispatch()
+    const [loading,setLoading] = useState(false)
     const [value,setValue] = useState({
         email :'',
         password :'',
@@ -24,7 +26,7 @@ export default function Signin(){
                 <div className="image">
                     <Image src={img} alt="Logo"/>
                 </div>
-                <form className="input" onSubmit={(e)=>signin(e,value,router,dispatch,login)}>
+                <form className="input" onSubmit={(e)=>signin(e,value,router,setLoading,dispatch,login)}>
                     <div className="login">
                         <h3>Login your account</h3>
                         <div>
@@ -39,6 +41,9 @@ export default function Signin(){
                             <input type="submit" value="SIGNIN"/>
                         </div>
                         <p className='text-center'>You are not a user? <Link href="/user/signup"><a className='font bold text-blue-500'>Signup</a></Link></p>
+                        {
+                            loading && <Trying text='Loging Please wait'/>
+                        }
                     </div>
                 </form>
             </div>
