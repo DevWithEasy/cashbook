@@ -38,12 +38,9 @@ export default function Signin(){
                             <input type="password" name="password" onChange={(e)=>handleInput(e,value,setValue)} placeholder='enter your password' className=''/>
                         </div>
                         <div className="">
-                            <input type="submit" value="SIGNIN"/>
+                            <input type="submit" value={loading ? "Please wait ..." : "SIGNIN"}/>
                         </div>
                         <p className='text-center'>You are not a user? <Link href="/user/signup"><a className='font bold text-blue-500'>Signup</a></Link></p>
-                        {
-                            loading && <Trying text='Loging Please wait'/>
-                        }
                     </div>
                 </form>
             </div>

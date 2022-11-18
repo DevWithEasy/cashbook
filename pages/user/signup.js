@@ -54,12 +54,9 @@ export default function Signup(){
                             <input type="text" name="confirm_password" onChange={(e)=>handleInput(e,value,setValue)} placeholder='enter your confirm password' className=''/>
                         </div>
                         <div className="">
-                            <input type="submit" value="SIGNUP"/>
+                            <input type="submit" value={loading ? "Please wait ..." : "SIGNUP"}/>
                         </div>
                         <p className='text-center'>Already have an account? <Link href="/user/signin"><a className='font bold text-blue-500'>Signin</a></Link></p>
-                        {
-                            loading && <Trying text='Loging Please wait'/>
-                        }
                     </div>
                 </form>
             </div>
