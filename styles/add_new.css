@@ -1,39 +1,39 @@
-.add_new{
-    @apply absolute left-0 -top-2 w-full h-screen flex justify-center items-center bg-gray-600/50 text-black;
-    &>div{
-        @apply bg-white w-10/12 rounded;
-        &>h3{
-            @apply px-4 py-2 text-xl font-semibold flex justify-between;
-            &>.close{
-                @apply px-3 py-0.5 border rounded hover:border-red-400 hover:text-red-400 cursor-pointer transition-all duration-300
-            }
-        }
-        &>.input{
-            @apply px-4 py-4 space-y-1;
-            &>label{
-                @apply text-sm
-            }
-            &>input{
-                @apply w-full p-2 border rounded focus:outline-none focus:border-blue-400 placeholder:text-sm
-            }
-            &>select{
-                @apply w-full p-2 border rounded text-sm focus:outline-none focus:border-blue-400 placeholder:text-sm
-            }
-            &>.image{
-                @apply flex justify-center;
-                &>img{
-                    @apply w-44 h-44 rounded;
-                }
-            }
-        }
-        &>.submit{
-            @apply px-4 py-2 flex justify-end;
-            &>.in{
-                @apply px-6 py-2 bg-blue-400 text-white rounded
-            }
-            &>.out{
-                @apply px-6 py-2 bg-red-400 text-white rounded
-            }
-        }
+.add_new {
+  @apply absolute left-0 -top-2 w-full h-screen flex justify-center items-center bg-gray-600/75 text-black;
+  & > div {
+    @apply bg-white w-8/12 rounded;
+    & > h3 {
+      @apply px-4 py-2 text-xl font-semibold flex justify-between;
+      & > .close {
+        @apply px-3 py-0.5 border rounded hover:border-red-400 hover:text-red-400 cursor-pointer transition-all duration-300;
+      }
     }
+    & > .input {
+      @apply px-4 py-4 space-y-1;
+      & > label {
+        @apply text-sm;
+      }
+      & > input {
+        @apply w-full p-2 border rounded focus:outline-none focus:border-blue-400 placeholder:text-sm;
+      }
+      & > select {
+        @apply w-full p-2 border rounded text-sm focus:outline-none focus:border-blue-400 placeholder:text-sm;
+      }
+      & > .image {
+        @apply flex justify-center;
+        & > img {
+          @apply w-44 h-44 rounded;
+        }
+      }
+    }
+    & > .submit {
+      @apply px-4 py-2 flex justify-end;
+      & > .in {
+        @apply px-6 py-2 bg-blue-400 text-white rounded;
+      }
+      & > .out {
+        @apply px-6 py-2 bg-red-400 text-white rounded;
+      }
+    }
+  }
 }

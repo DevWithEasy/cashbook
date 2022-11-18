@@ -1,7 +1,7 @@
 .entry_details{
     @apply relative h-screen space-y-2 px-4 pt-16 bg-gray-100;
     &>.entry{
-        @apply  p-2 space-y-2 bg-white border border-t-4 border-t-green-500 rounded;
+        @apply  p-2 space-y-2 bg-white border border-t-4 rounded;
         &>div{
             @apply flex justify-between text-sm;
             &>.debit{
@@ -18,14 +18,14 @@
     &>.details{
         @apply bg-white border rounded pb-2;
         &>p{
-            @apply text-center text-xl py-1 bg-gray-200;
+            @apply text-center text-xl py-1 bg-gray-300;
         }
         &>div{
             @apply pt-2 space-y-2;
             &>div{
                 @apply mx-2 border rounded;
                 &>.date{
-                    @apply bg-gray-200 px-2 py-1;
+                    @apply bg-gray-300 px-2 py-1;
                 }
                 &>.time{
                     @apply flex justify-between px-2 py-1 ;

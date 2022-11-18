@@ -34,7 +34,7 @@ const CashOut = ({id,setOut}) => {
                 <hr />
                 <div className="submit">
                     {
-                        loading && <Trying text='Creating'/>
+                        loading && <Trying text='Wait'/>
                     }
                     <button className='out' onClick={()=>createEntryOther(id,user._id,value,setValue,"Debit",setLoading,dispatch,addEntry)}>ADD & MORE</button>
                     <button className='out' onClick={()=>createEntry(value,setOut,setLoading,dispatch,addEntry)}>ADD</button>

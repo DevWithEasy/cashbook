@@ -13,7 +13,7 @@ export default function EntryDetails(){
     return(
         <div className="entry_details">
             <Header/>
-            <div className="entry">
+            <div className={entry.entryType === 'Credit' ? "entry border-t-green-500 " : "entry border-t-red-500"}>
                 <div className="">
                     <span className={entry.entryType === 'Credit' ? 'credit' : 'debit'}>{entry.entryType}</span>
                     <span>{new Date(entry.createdAt).toDateString()}</span>

@@ -32,9 +32,10 @@ const CashIn = ({id,setAdd}) => {
                     <input type="text" name="remark" placeholder='e.g- Salary' value={value.remark} onChange={(e)=>handleInput(e,value,setValue)}/>
                 </div>
                 <hr />
+                    
                 <div className="submit">
                     {
-                        loading && <Trying text='Creating'/>
+                        loading && <Trying text='Wait'/>
                     }
                     <button className='in' onClick={()=>createEntryOther(id,user._id,value,setValue,"Credit",setLoading,dispatch,addEntry)}>ADD & MORE</button>
                     <button className='in' onClick={()=>createEntry(value,setAdd,setLoading,dispatch,addEntry)}>ADD</button>

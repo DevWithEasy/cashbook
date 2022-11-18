@@ -9,7 +9,7 @@
       @apply p-2;
     }
     & > .setting {
-      @apply absolute w-40 right-4 top-7 p-2 bg-gray-200 rounded;
+      @apply absolute w-40 right-4 top-7 p-2 bg-gray-300 rounded;
       & > button {
         @apply flex w-full items-center space-x-2 hover:bg-white hover:text-blue-500 rounded;
       }

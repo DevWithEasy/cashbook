@@ -10,6 +10,7 @@ import CashOut from "../../../components/CashOut";
 import DeleteBook from '../../../components/DeleteBook';
 import DeleteEntry from "../../../components/DeleteEntry";
 import Header from "../../../components/Header";
+import NoData from '../../../components/NoData';
 import Table from "../../../components/Table";
 import UpdateBook from '../../../components/UpdateBook';
 import UpdateEntry from "../../../components/UpdateEntry";
@@ -78,7 +79,8 @@ export default function Books(){
                 </div>
             </div>
             <Balance entries={allEntries}/>
-            <Table entries={allEntries} setUpdateId={setUpdateId} setDeleteId={setDeleteId} setUpdate={setUpdate} setRemove={setRemove}/>
+            {allEntries.length === 0 ? <NoData/> : <Table entries={allEntries} setUpdateId={setUpdateId} setDeleteId={setDeleteId} setUpdate={setUpdate} setRemove={setRemove}/>}
+            
             {
                 add && <CashIn id={id} setAdd={setAdd}/>
             }

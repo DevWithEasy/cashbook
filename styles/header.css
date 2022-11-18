@@ -11,12 +11,12 @@
             }
         }
         &>.link{
-            @apply absolute w-40 right-4 top-12 p-2 bg-gray-200 border rounded space-y-2 z-50;
+            @apply absolute w-40 right-4 top-12 p-2 bg-gray-300 border rounded space-y-2 z-50;
             &>a{
-                @apply flex items-center space-x-2 px-2 py-2 hover:bg-white transition-all duration-300 rounded text-gray-600 hover:text-blue-500
+                @apply flex items-center space-x-2 px-2 py-2 hover:bg-white transition-all duration-300 rounded  hover:text-blue-500
             }
             &>button{
-                @apply flex w-full items-center space-x-2 px-2 py-2 hover:bg-white transition-all duration-300 rounded text-gray-600 hover:text-blue-500
+                @apply flex w-full items-center space-x-2 px-2 py-2 hover:bg-white transition-all duration-300 rounded hover:text-blue-500
             }
         }
     }
