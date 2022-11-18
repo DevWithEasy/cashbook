@@ -1,0 +1,43 @@
+.profile {
+  @apply relative w-full pt-16 px-4 pb-4 bg-gray-600;
+  & > .info {
+    @apply md:w-8/12 pb-4 bg-white rounded mx-auto;
+    &>.profile_image{
+      @apply relative flex justify-center items-center h-40 bg-blue-300 rounded-t;
+      &>img{
+        @apply absolute -bottom-12 left-6 h-28 w-28 rounded-full ring-2;
+      }
+      &>button{
+        @apply absolute -bottom-10 left-28 flex justify-center items-center text-blue-500 ring-2 p-1 rounded-full bg-white;
+      }
+    }
+    &>.profile_text{
+      @apply pl-4 pt-16;
+      &>.name{
+        @apply text-2xl font-bold;
+      }
+      &>.contact{
+        @apply space-x-2;
+      }
+      &>button{
+        @apply bg-blue-400 p-2 text-white rounded;
+
+      }
+    }
+    &>.change_password{
+      @apply mx-4 mt-4 border border-blue-300 rounded;
+      &>h3{
+        @apply p-1 text-xl bg-blue-300 text-white;
+      }
+      &>div{
+        @apply p-2 space-y-2;
+        &>.input{
+          @apply w-full p-2 border rounded focus:outline-none focus:border-blue-300;
+        }
+        &>input[type="submit"]{
+          @apply p-2 bg-blue-400 text-white rounded cursor-pointer;
+        }
+      }
+    }
+  }
+}

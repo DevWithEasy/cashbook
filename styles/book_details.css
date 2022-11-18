@@ -1,0 +1,71 @@
+.book_details {
+  @apply relative w-full h-screen p-4 pt-16;
+  & > .book_info {
+    @apply relative flex justify-between items-center;
+    & > h3 {
+      @apply text-xl font-bold;
+    }
+    & > div > button {
+      @apply p-2;
+    }
+    & > .setting {
+      @apply absolute w-40 right-4 top-7 p-2 bg-gray-200 rounded;
+      & > button {
+        @apply flex w-full items-center space-x-2 hover:bg-white hover:text-blue-500 rounded;
+      }
+    }
+  }
+  & > .search {
+    @apply flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:justify-between items-center py-2;
+    & > .input {
+      @apply w-full sm:w-1/2;
+      & > input {
+        @apply w-full border p-2 focus:outline-none focus:border-blue-400 rounded;
+      }
+    }
+    & > .entry {
+      @apply w-full sm:w-1/2 flex justify-end;
+      & > div {
+        @apply flex space-x-3;
+        & > button {
+          @apply flex items-center space-x-1 p-2 text-white rounded;
+        }
+        & > .in {
+          @apply bg-green-500;
+        }
+        & > .out {
+          @apply bg-red-500;
+        }
+      }
+    }
+  }
+  /* & > .balance_area {
+    @apply flex flex-col sm:justify-between py-2 border rounded;
+    & > div {
+      @apply w-full sm:w-3/12 py-2 sm:flex sm:justify-center;
+      & > div {
+        @apply flex justify-between sm:items-center space-x-2;
+        & > p {
+          @apply flex justify-between sm:flex-col;
+          & > .text {
+            @apply text-gray-700;
+          }
+          & > .balace {
+            @apply text-black text-xl font-bold;
+          }
+        }
+      }
+      & > .cashin {
+        @apply text-green-500;
+      }
+      & > .cashout {
+        @apply text-red-500;
+      }
+      & > .balance {
+        @apply text-blue-500;
+      }
+    }
+  } */
+
+  
+}

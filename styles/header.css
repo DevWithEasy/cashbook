@@ -1,0 +1,23 @@
+.header_main{
+    @apply absolute w-full -top-0 left-0 bg-white;
+    &>.header{
+        @apply relative flex justify-between p-2 px-4 shadow;
+        &>a{
+            @apply text-2xl font-bold text-blue-500
+        }
+        &>.icon{
+            &>button{
+                @apply flex items-center justify-center w-10 h-10 border rounded-full
+            }
+        }
+        &>.link{
+            @apply absolute w-40 right-4 top-12 p-2 bg-gray-200 border rounded space-y-2 z-50;
+            &>a{
+                @apply flex items-center space-x-2 px-2 py-2 hover:bg-white transition-all duration-300 rounded text-gray-600 hover:text-blue-500
+            }
+            &>button{
+                @apply flex w-full items-center space-x-2 px-2 py-2 hover:bg-white transition-all duration-300 rounded text-gray-600 hover:text-blue-500
+            }
+        }
+    }
+}

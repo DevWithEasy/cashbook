@@ -1,0 +1,24 @@
+.add_new{
+    @apply absolute left-0 -top-2 w-full h-screen flex justify-center items-center bg-gray-600/50 text-black;
+    &>div{
+        @apply bg-white w-10/12 rounded;
+        &>h3{
+            @apply px-4 py-2 text-xl font-semibold flex justify-between;
+            &>.close{
+                @apply px-3 py-0.5 border rounded hover:border-red-400 hover:text-red-400 cursor-pointer transition-all duration-300
+            }
+        }
+        &>.input{
+            @apply px-4 py-4 space-y-1;
+        }
+        &>.submit{
+            @apply px-4 py-2 flex justify-end space-x-3;
+            &>.cancel{
+                @apply px-6 py-2 bg-gray-400 hover:bg-gray-500 text-white rounded
+            }
+            &>.delete{
+                @apply px-6 py-2 bg-red-400 hover:bg-red-500 text-white rounded
+            }
+        }
+    }
+}

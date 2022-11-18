@@ -1,0 +1,36 @@
+.signup{
+    @apply relative w-full h-screen bg-gray-600 pt-16;
+    &>.signup_area{
+        @apply flex w-11/12  mx-auto border p-4 rounded shadow-md bg-white;
+        &>div{
+            @apply w-1/2
+        }
+        &>.image{
+            @apply hidden md:flex justify-center items-center border-r-2 px-2 border-gray-600;
+        }
+        &>.input{
+            @apply w-full md:w-1/2 flex justify-center items-center;
+            &>.login{
+                @apply py-28
+            }
+            &>div{
+                @apply w-full space-y-2  px-4;
+                &>h3{
+                    @apply text-2xl font-bold
+                }
+                &>div{
+                    @apply space-y-2;
+                    &>label{
+                       @apply block w-full text-sm
+                    }
+                    &>input{
+                       @apply block w-full p-2 border rounded focus:outline-none focus:border-blue-400 placeholder:text-sm
+                    }
+                    &>input[type="submit"]{
+                        @apply bg-blue-500 text-white hover:bg-blue-600;
+                    }
+                }
+            }
+        }
+    }
+}

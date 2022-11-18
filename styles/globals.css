@@ -1,0 +1,13 @@
+@import "tailwindcss/base";
+@import "./index.css";
+@import "./book_details.css";
+@import "./add_new.css";
+@import "./header.css";
+@import "./delete.css";
+@import "./signup.css";
+@import "./profile.css";
+@import "./entry_details.css";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";

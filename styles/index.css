@@ -1,0 +1,33 @@
+.index{
+  @apply relative w-full h-screen bg-gray-600 text-white p-4 pt-16 space-y-2;
+  &>.add_book{
+    @apply flex justify-center bg-gray-500 p-2 rounded hover:bg-gray-400;
+    &>button{
+      @apply w-full flex justify-center items-center text-center space-x-2
+    }
+  }
+  &>.book_list{
+    @apply space-y-4;
+    &>.search{
+      &>input{
+        @apply w-full rounded p-2 bg-gray-300 placeholder:text-gray-100 focus:outline-none
+      }
+    }
+    &>.list{
+      @apply space-y-2;
+      &>a{
+        &>.book{
+          @apply flex items-center space-x-3 p-2 hover:bg-gray-500 rounded transition-all duration-300;
+          &>div{
+            &>.name{
+              
+            }
+            &>.date{
+              @apply text-xs
+            }
+          }
+        }
+      }
+    }
+  }
+}
