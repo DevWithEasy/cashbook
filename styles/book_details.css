@@ -1,5 +1,5 @@
 .book_details {
-  @apply relative w-full h-screen p-4 pt-16;
+  @apply relative w-full min-h-screen p-4 pt-16;
   & > .book_info {
     @apply relative flex justify-between items-center;
     & > h3 {

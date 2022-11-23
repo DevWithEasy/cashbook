@@ -1,5 +1,5 @@
 .index{
-  @apply relative w-full h-screen bg-gray-800 text-white p-4 pt-16 space-y-2;
+  @apply relative w-full min-h-screen bg-gray-800 text-white p-4 pt-16 space-y-2;
   &>.add_book{
     @apply flex justify-center bg-gray-600 p-2 rounded hover:bg-gray-400;
     &>button{

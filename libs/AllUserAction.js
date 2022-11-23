@@ -6,10 +6,13 @@ export const signup=async(e,value,router)=>{
     try{
     const res = await axios.post('/api/user/signup',value)
     if(res.data.status === 200){
-        router.push("/user/signin")
+        localStorage.setItem('cb_access_token',res.data.token)
+        router.push("/user/verify_account")
+        console.log(res.data)
     }
     }catch(err){
         notificationNOT(err.message)
+        console.log(err)
     }
 }
 
@@ -60,5 +63,18 @@ export const updateProfile=async(e,value,setView,setLoading,dispatch,action)=>{
         }
     } catch (err) {
         notificationNOT(err.message)
+    }
+}
+
+export const findAccount = async(email,setUser,setFind,setFinded) =>{
+    try {
+        const res = await axios.get(`/api/user/find/${email}`)
+        if(res.data.status === 200){
+            setUser(res.data.data)
+            setFind(true)
+            setFinded(true)
+        }
+    } catch (error) {
+        console.log(error)
     }
 }

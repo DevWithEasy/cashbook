@@ -1,5 +1,5 @@
 .entry_details{
-    @apply relative h-screen space-y-2 px-4 pt-16 bg-gray-100;
+    @apply relative min-h-screen space-y-2 px-4 pt-16 bg-gray-100;
     &>.entry{
         @apply  p-2 space-y-2 bg-white border border-t-4 rounded;
         &>div{

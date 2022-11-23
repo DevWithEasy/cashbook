@@ -1,5 +1,5 @@
-.signup{
-    @apply relative w-full h-screen bg-gray-600 pt-16;
+/* .signup{
+    @apply relative w-full min-h-screen bg-gray-300 pt-16;
     &>.signup_area{
         @apply flex w-11/12  mx-auto border p-4 rounded shadow-md bg-white;
         &>div{
@@ -33,4 +33,4 @@
             }
         }
     }
-}
+} */
