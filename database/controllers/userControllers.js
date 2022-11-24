@@ -24,7 +24,7 @@ export const signin = async(req,res)=>{
             })
         }
         //generate access token
-        const token = await jwt.sign({id : user._id},process.env.JWT_SECRET)
+        const token = await jwt.sign({id : findUser._id},process.env.JWT_SECRET)
         
         const {password,...others} = findUser
         res.status(200).json({

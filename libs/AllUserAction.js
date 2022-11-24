@@ -29,7 +29,7 @@ export const signin= async(e,value,router,setLoading,dispatch,action)=>{
     }
     }catch(error){
         setLoading(false)
-        notificationNOT(err.message)
+        notificationNOT(error.message)
     }
 }
 
