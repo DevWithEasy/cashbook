@@ -23,7 +23,7 @@ const DeleteEntry = ({deleteId,setRemove}) => {
                     {
                         loading && <Trying text='Deleting'/>
                     }
-                    <button className='cancel' onClick={()=>setRemove(false)}>CANCEL</button>
+                    <button className='cancel hidden sm:block' onClick={()=>setRemove(false)}>CANCEL</button>
                     <button className='delete' onClick={()=>deleteEntry(deleteId,setRemove,setLoading,dispatch,removeEntry)}>DELETE</button>
                 </div>
             </div>

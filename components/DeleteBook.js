@@ -26,7 +26,7 @@ const DeleteBook = ({id,setRemoveBook}) => {
                     {
                         loading && <Trying text='Deleting'/>
                     }
-                    <button className='cancel' onClick={()=>setRemoveBook(false)}>CANCEL</button>
+                    <button className='cancel hidden sm:block' onClick={()=>setRemoveBook(false)}>CANCEL</button>
                     <button className='delete' onClick={()=>deleteBook(id,router,setLoading,dispatch,removeBook)}>DELETE</button>
                 </div>
             </div>

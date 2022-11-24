@@ -4,6 +4,7 @@ import { createEntry, createEntryOther } from '../libs/allEntryAction';
 import { addEntry } from '../store/slice/bookSlice';
 import handleInput from '../utils/handleInput';
 import Trying from './Trying';
+import {MdLibraryAdd,MdAddCircle} from "react-icons/md"
 
 const CashIn = ({id,setAdd}) => {
     const user = useSelector(state=> state.auth.user)
@@ -37,8 +38,8 @@ const CashIn = ({id,setAdd}) => {
                     {
                         loading && <Trying text='Wait'/>
                     }
-                    <button className='in' onClick={()=>createEntryOther(id,user._id,value,setValue,"Credit",setLoading,dispatch,addEntry)}>ADD & MORE</button>
-                    <button className='in' onClick={()=>createEntry(value,setAdd,setLoading,dispatch,addEntry)}>ADD</button>
+                    <button className='in' onClick={()=>createEntryOther(id,user._id,value,setValue,"Credit",setLoading,dispatch,addEntry)}><MdLibraryAdd/></button>
+                    <button className='in' onClick={()=>createEntry(value,setAdd,setLoading,dispatch,addEntry)}><MdAddCircle/></button>
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ const Table = ({entries,setUpdateId,setDeleteId,setUpdate,setRemove}) => {
         <div className="entry_list">
             <div className="space-y-2 pb-4">
                 {
-                    entries.map(entry=><div key={entry._id} className='border rounded'>
+                    entries.map(entry=><div key={entry._id} className='border rounded bg-white'>
                         <div className='realtive flex justify-between items-center bg-gray-300 px-2 py-1'>
                             <span>{new Date(entry.createdAt).toDateString()}</span>
                             <div className="flex items-center space-x-4">

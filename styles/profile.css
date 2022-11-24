@@ -1,5 +1,5 @@
 .profile {
-  @apply relative w-full pt-16 px-4 pb-4 bg-gray-600;
+  @apply relative w-full pt-16 px-4 pb-4 bg-gray-300;
   & > .info {
     @apply md:w-8/12 pb-4 bg-white rounded mx-auto;
     &>.profile_image{
@@ -25,17 +25,17 @@
       }
     }
     &>.change_password{
-      @apply mx-4 mt-4 border border-blue-300 rounded;
+      @apply mx-4 mt-4 border border-blue-400 rounded;
       &>h3{
-        @apply p-1 text-xl bg-blue-300 text-white;
+        @apply p-1 text-xl bg-blue-400 text-white;
       }
       &>div{
         @apply p-2 space-y-2;
         &>.input{
-          @apply w-full p-2 border rounded focus:outline-none focus:border-blue-300;
+          @apply w-full p-2 border rounded focus:outline-none focus:ring-2;
         }
         &>input[type="submit"]{
-          @apply p-2 bg-blue-400 text-white rounded cursor-pointer;
+          @apply p-2 bg-blue-400 hover:bg-blue-500 text-white rounded cursor-pointer transition-all duration-300;
         }
       }
     }

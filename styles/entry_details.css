@@ -28,7 +28,7 @@
                     @apply bg-gray-300 px-2 py-1;
                 }
                 &>.time{
-                    @apply flex justify-between px-2 py-1 ;
+                    @apply flex justify-between items-center px-2 py-1 ;
                 }
                 &>.amount{
                     @apply px-2 py-1 text-gray-500;

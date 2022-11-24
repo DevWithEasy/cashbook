@@ -26,7 +26,7 @@ const Header = () => {
                 <div className="icon">
                     <button onClick={()=>setAccount(!account)}>
                         {!user.image && <AiOutlineUserAdd/>}
-                        {user.image && <img src={user?.image?.url} alt="profile"/>}
+                        {user.image && <img src={user?.image?.url} alt="profile" className='rounded-full'/>}
                     </button>
                 </div>
                {

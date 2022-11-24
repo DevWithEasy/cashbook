@@ -34,7 +34,7 @@ export default function EntryDetails(){
                                 <p className="date">{new Date(item.date).toDateString()}</p>
                                 <p className="time">
                                     <span>Entry Changed</span>
-                                    <span className="text-gray-400">{new Date(item.date).toLocaleTimeString()}</span>
+                                    <span className="text-gray-400 text-xs">{new Date(item.date).toLocaleTimeString()}</span>
                                 </p>
                                 <div className="amount">
                                     <p>From : {item.from}</p>
