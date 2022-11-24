@@ -65,7 +65,7 @@ export default function Signin(){
                         <div className="space-y-2 text-sm text-gray-500">
                             <Link href="/user/forget"><a className='py-2 inline-block'>Forget your password ?</a></Link>
                             <hr className='border-gray-400'/>
-                            <div className='flex justify-between items-center'>You are havn't an account? <Link href="/user/signup"><a className='border px-4 py-2 bg-white text-sky-800 font-semibold border-slate-400 rounded-md'>Signup</a></Link></div>
+                            <div className='flex justify-between items-center'>You are have not an account? <Link href="/user/signup"><a className='border px-4 py-2 bg-white text-sky-800 font-semibold border-slate-400 rounded-md'>Signup</a></Link></div>
                         </div>
                        
                     </div>

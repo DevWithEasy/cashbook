@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import Header from "../../components/Header"
@@ -31,6 +32,7 @@ export default function Forget(){
                 {finded && <div className="flex mx-3 border rounded p-4">
                     <div className="flex justify-center items-center">
                         <img src="" alt="" className="w-16 h-16 rounded-full ring-2"/>
+                        {/* <Image src={user?.image?.url} alt="user image"/> */}
                     </div>
                     <div className="pl-4">
                         <p className="">{user?.name}</p>
