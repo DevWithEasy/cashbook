@@ -18,6 +18,7 @@ const Header = () => {
         dispatch(logout())
         dispatch(logoutReset())
         router.push('/')
+        localStorage.removeItem('cb_access_token')
     }
     return (
         <div className='header_main'>

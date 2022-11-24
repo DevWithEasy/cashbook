@@ -22,6 +22,7 @@ export const signin= async(e,value,router,setLoading,dispatch,action)=>{
     try{
     const res = await axios.post('/api/user/',value)
     if(res.data.data){
+        localStorage.setItem('cb_access_token',res.data.token)
         setLoading(false)
         dispatch(action(res.data.data))
         router.push('/')

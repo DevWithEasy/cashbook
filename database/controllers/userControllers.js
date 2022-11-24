@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import User from "../model/User";
+import jwt from 'jsonwebtoken';
 
 export const signin = async(req,res)=>{
     try{
@@ -22,12 +23,16 @@ export const signin = async(req,res)=>{
                 message:"Credentials not valid"
             })
         }
+        //generate access token
+        const token = await jwt.sign({id : user._id},process.env.JWT_SECRET)
+        
         const {password,...others} = findUser
         res.status(200).json({
             success : "success",
             status:200,
             data : others._doc,
-            message:"Successfully signin"
+            message:"Successfully signin",
+            token
         })
     }catch(err){
         res.status(500).json({
