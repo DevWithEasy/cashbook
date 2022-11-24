@@ -10,7 +10,7 @@ export default function AccountVerification(){
     return (
         <div className="relative pt-16 min-h-screen bg-gray-300 flex justify-center items-center">
             <Header/>
-            <div className="bg-gray-100 rounded mx-4 md:w-6/12 pb-6">
+            <div className="bg-gray-100 rounded mx-4 md:w-5/12 pb-6">
                 <h1 className="text-2xl text-center p-2 font-bold text-blue-500">Verify account</h1>
                 <hr />
                 <div className="p-2 space-y-3">
