@@ -2,17 +2,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
+import { BsFacebook } from 'react-icons/bs';
+import { FcGoogle } from 'react-icons/fc';
+import { MdOutlineEmail, MdOutlineRemoveRedEye } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import Header from '../../components/Header';
-import Trying from '../../components/Trying';
 import { signin } from '../../libs/AllUserAction';
+import {googleSignIn} from '../../libs/socialSigninAction';
+import img from '../../public/image/login.png';
 import { login } from '../../store/slice/authSlice';
 import handleSigninInput from '../../utils/handleSigninInput';
-import {FcGoogle} from 'react-icons/fc';
-import {BsFacebook} from 'react-icons/bs';
-import {MdOutlineEmail,MdOutlineRemoveRedEye} from 'react-icons/md';
-import img from '../../public/image/login.png';
-import { Toaster } from 'react-hot-toast';
 
 export default function Signin(){
     const router = useRouter()
@@ -61,7 +61,7 @@ export default function Signin(){
                             <hr className='border-gray-500'/>
                         </div>
                         <div className="space-y-2 pt-2">
-                            <button className='w-full flex justify-center items-center space-x-3 bg-slate-300 p-2 rounded-md hover:bg-slate-400 hover:text-white transition-all duration-300'>
+                            <button onClick={()=>googleSignIn(router,dispatch,login)} className='w-full flex justify-center items-center space-x-3 bg-slate-300 p-2 rounded-md hover:bg-slate-400 hover:text-white transition-all duration-300'>
                                 <FcGoogle/>
                                 <span>Sign in with Google</span>
                             </button>

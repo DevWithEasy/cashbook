@@ -13,6 +13,7 @@
     "axios": "^0.27.2",
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.32.0",
+    "firebase": "^9.14.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.2",
     "multer": "^1.4.5-lts.1",

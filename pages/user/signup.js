@@ -6,13 +6,17 @@ import { Toaster } from 'react-hot-toast';
 import { BsFacebook } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import { MdOutlineEmail, MdOutlineRemoveRedEye } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
 import Header from '../../components/Header';
 import { signup } from '../../libs/AllUserAction';
+import {facebookSignIn, googleSignIn} from '../../libs/socialSigninAction';
 import img from '../../public/image/signup.png';
+import { login } from '../../store/slice/authSlice';
 import handleSignupInput from '../../utils/handleSignupInput';
 
 export default function Signup(){
     const router = useRouter()
+    const dispatch = useDispatch()
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState({
         name :'',
@@ -79,13 +83,13 @@ export default function Signup(){
                             <hr className='border-gray-500'/>
                         </div>
                         <div className="space-y-2 pt-2">
-                            <button className='w-full flex justify-center items-center space-x-3 bg-slate-300 p-2 rounded-md hover:bg-slate-400 hover:text-white transition-all duration-300'>
+                            <button onClick={()=>googleSignIn(router,dispatch,login)} className='w-full flex justify-center items-center space-x-3 bg-slate-300 p-2 rounded-md hover:bg-slate-400 hover:text-white transition-all duration-300'>
                                 <FcGoogle/>
-                                <span>Sign in with Google</span>
+                                <span>Sign up with Google</span>
                             </button>
-                            <button className='w-full flex justify-center items-center space-x-3 bg-slate-300 p-2 rounded-md hover:bg-slate-400 hover:text-white transition-all duration-300'>
+                            <button onClick={()=>facebookSignIn()} className='w-full flex justify-center items-center space-x-3 bg-slate-300 p-2 rounded-md hover:bg-slate-400 hover:text-white transition-all duration-300'>
                                 <BsFacebook/>
-                                <span>Sign in with Facebook</span>
+                                <span>Sign up with Facebook</span>
                             </button>
                         </div>
                             <div className="space-y-2 text-sm text-gray-500">

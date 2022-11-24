@@ -12,12 +12,10 @@ const userSchema = mongoose.Schema({
     },
     number:{
         type:String,
-        required:true,
         unique:true
     },
     password:{
-        type:String,
-        required:true
+        type:String
     },
     image:{
         public_id :{
