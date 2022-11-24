@@ -25,7 +25,7 @@ const AddBook = ({setAdd}) => {
                 <hr />
                 <div className="submit">
                     {
-                        loading && <Trying text='creating new book'/>
+                        loading && <Trying text='Wait'/>
                     }
                     <button className='in' onClick={(e)=>createBook(value,user._id,setAdd,setLoading,dispatch,addBook)}>ADD</button>
                 </div>

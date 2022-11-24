@@ -1,7 +1,9 @@
 import axios from "axios"
+import { notificationNOT, notificationOK } from "../utils/toastNotification"
 
-export const verifyAccount = async (code,router)=>{
+export const verifyAccount = async (code,router,setVerify)=>{
     try {
+        setVerify(true)
         const res = await axios.post("/api/user/verify",{code},{
             headers: {
                 "cb-access-token": localStorage.getItem("cb_access_token"),
@@ -9,9 +11,12 @@ export const verifyAccount = async (code,router)=>{
         })
         if(res.data){
             router.push("/user/signin")
+            setVerify(false)
         }
     } catch (error) {
+        notificationNOT(error.response.data.message)
         console.log(error.response.data)
+        setVerify(false)
     }
 }
 
@@ -22,9 +27,11 @@ export const verifyCodeAgain = async ()=>{
                 "cb-access-token": localStorage.getItem("cb_access_token"),
             }
         })
-        console.log(res.data)
+        if(res.data){
+            notificationOK(res.data.message)
+        }
     } catch (error) {
-        console.log(error)
+        notificationNOT(error.message)
     }
 }
 

@@ -1,17 +1,21 @@
 import axios from "axios"
 import { notificationNOT, notificationOK } from "../utils/toastNotification"
 
-export const signup=async(e,value,router)=>{
+export const signup=async(e,value,router,setLoading)=>{
     e.preventDefault()
+    setLoading(true)
     try{
     const res = await axios.post('/api/user/signup',value)
     if(res.data.status === 200){
+        setLoading(false)
         localStorage.setItem('cb_access_token',res.data.token)
         router.push("/user/verify_account")
+        notificationOK(res.data.message)
         console.log(res.data)
     }
     }catch(err){
-        notificationNOT(err.message)
+        setLoading(false)
+        notificationNOT(err.response.data.message)
         console.log(err)
     }
 }
@@ -29,7 +33,8 @@ export const signin= async(e,value,router,setLoading,dispatch,action)=>{
     }
     }catch(error){
         setLoading(false)
-        notificationNOT(error.message)
+        notificationNOT(error.response.data.message)
+        console.log(error)
     }
 }
 
@@ -48,7 +53,7 @@ export const uploadPhoto=async(e,id,file,setView,setLoading,dispatch,action)=>{
             setView(false)
         }
     } catch (err) {
-        notificationNOT(err.message)
+        notificationNOT(error.response.data.message)
     }
 }
 export const updateProfile=async(e,value,setView,setLoading,dispatch,action)=>{
@@ -62,8 +67,8 @@ export const updateProfile=async(e,value,setView,setLoading,dispatch,action)=>{
             dispatch(action(res.data.data))
             setView(false)
         }
-    } catch (err) {
-        notificationNOT(err.message)
+    } catch (error) {
+        notificationNOT(error.response.data.message)
     }
 }
 
@@ -76,6 +81,28 @@ export const findAccount = async(email,setUser,setFind,setFinded) =>{
             setFinded(true)
         }
     } catch (error) {
-        console.log(error)
+        notificationNOT(error.response.data.message)
+    }
+}
+
+export const deleteAccount=async(setView,router,setLoading,dispatch,logoutAction,resetAction)=>{
+    try {
+        setLoading(true)
+        const res  = await axios.delete(`/api/user/delete_account`,{
+            headers: {
+                "cb-access-token": localStorage.getItem("cb_access_token"),
+            }
+        })
+        if(res.data){
+            setLoading(false)
+            notificationOK(res.data.message)
+            dispatch(logoutAction())
+            dispatch(resetAction())
+            router.push("/user/signin")
+            setView(false)
+        }
+    } catch (error) {
+        setLoading(false)
+        notificationNOT(error.response.data.message)
     }
 }

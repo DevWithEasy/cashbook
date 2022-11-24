@@ -18,13 +18,13 @@ async function handler(req, res){
         if(!code) return res.status(404).json({
             success : false,
             status : 404,
-            message : "Code not found.Sent again"
+            message : "Code not found."
         })
 
         if(code.expired < Date.now()) return res.status(201).json({
             success : false,
             status : 201,
-            message : "Code expired.Sent again"
+            message : "Code expired"
         })
 
         const isvalid = await bcrypt.compare(req.body.code,code.code)

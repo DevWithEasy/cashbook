@@ -14,7 +14,7 @@ const authSlice = createSlice({
         logout:(state,action)=>{
             state.isAuth = false
             state.user = {}
-        }
+        },
     }
 })
 export const {login, logout} = authSlice.actions

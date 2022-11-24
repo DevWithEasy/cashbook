@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Toaster } from 'react-hot-toast';
 import { AiOutlineCamera } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
+import DeleteAccount from "../../components/DeleteAccount";
+import DeleteEntry from "../../components/DeleteAccount";
 import Header from "../../components/Header";
 import UpdateProfile from "../../components/UpdateProfile";
 import UpdateProfilePhoto from "../../components/UpdateProfilePhoto";
@@ -12,6 +14,7 @@ export default function Profile(){
     const dispatch = useDispatch()
     const [update,setUpdate] = useState(false)
     const [updatePhoto,setUpdatePhoto] = useState(false)
+    const [deleteAccount,setDeleteAccount] = useState(false)
     const [image,setImage] = useState(null)
     const [file,setFile] = useState(null)
     const [password,setPassword] = useState({
@@ -45,7 +48,10 @@ export default function Profile(){
                         <span className="font-semibold">Mobile Number :</span>
                         <span>{user?.number}</span>
                     </p>
-                    <button onClick={()=>setUpdate(true)}>Update profile</button>
+                    <div className="">
+                        <button onClick={()=>setUpdate(true)} className="update">Update profile</button>
+                        <button onClick={()=>setDeleteAccount(true)} className="delete">Account Delete</button>
+                    </div>
                 </div>
                 <div className="change_password">
                     <h3>Change Password</h3>
@@ -62,6 +68,9 @@ export default function Profile(){
             }
             {
                 updatePhoto && <UpdateProfilePhoto setUpdatePhoto={setUpdatePhoto} handleFile={handleFile} file={file} image={image} />
+            }
+            {
+                deleteAccount && <DeleteAccount setDeleteAccount={setDeleteAccount}/>
             }
             <Toaster/>
         </div>

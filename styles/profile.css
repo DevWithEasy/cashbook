@@ -19,9 +19,14 @@
       &>.contact{
         @apply space-x-2;
       }
-      &>button{
-        @apply bg-blue-400 p-2 text-white rounded;
-
+      &>div{
+        @apply flex space-x-2;
+        &>.update{
+          @apply bg-blue-400 p-2 text-white rounded;
+        }
+        &>.delete{
+          @apply bg-red-400 p-2 text-white rounded;
+        }
       }
     }
     &>.change_password{
