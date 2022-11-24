@@ -5,7 +5,11 @@ export default function Index(){
   const router = useRouter()
   const user = useSelector(state=> state.auth.user)
   if (user.email) {
-    router.push("/books")
+    if(!user.isVerified){
+      router.push("/user/verify_account")
+    }else{
+      router.push("/books")
+    }
   }else{
     router.push('/user/signin')
   }
