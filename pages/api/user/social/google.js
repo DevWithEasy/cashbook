@@ -21,7 +21,7 @@ export default async function handler(req, res){
             const newUser = new User({
                 name : req.body.name,
                 email : req.body.email,
-                number : req.body.number,
+                number : "",
                 isVerified : true,
                 isFromGoogle : true,
                 image:{
@@ -41,6 +41,10 @@ export default async function handler(req, res){
             })
         }
     } catch (error) {
-        console.log(error.message)
+        res.status(500).json({
+            success : "fail",
+            status:500,
+            message:error.message,
+        })
     }
 }

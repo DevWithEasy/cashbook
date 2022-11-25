@@ -7,7 +7,7 @@ const getAllBook =async(id,dispath,action)=>{
         dispath(action(res.data.data))
       }
     }catch(err){
-      console.log(err)
+      console.log(err.message)
     }
 }
 export default getAllBook;

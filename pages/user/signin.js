@@ -9,7 +9,7 @@ import { MdOutlineEmail, MdOutlineRemoveRedEye } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import Header from '../../components/Header';
 import { signin } from '../../libs/AllUserAction';
-import {googleSignIn} from '../../libs/socialSigninAction';
+import {googleSignIn,facebookSignIn} from '../../libs/socialSigninAction';
 import img from '../../public/image/login.png';
 import { login } from '../../store/slice/authSlice';
 import handleSigninInput from '../../utils/handleSigninInput';
@@ -65,7 +65,7 @@ export default function Signin(){
                                 <FcGoogle/>
                                 <span>Sign in with Google</span>
                             </button>
-                            <button className='w-full flex justify-center items-center space-x-3 bg-slate-300 p-2 rounded-md hover:bg-slate-400 hover:text-white transition-all duration-300'>
+                            <button onClick={()=>facebookSignIn()} className='w-full flex justify-center items-center space-x-3 bg-slate-300 p-2 rounded-md hover:bg-slate-400 hover:text-white transition-all duration-300'>
                                 <BsFacebook/>
                                 <span>Sign in with Facebook</span>
                             </button>
