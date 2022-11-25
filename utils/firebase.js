@@ -3,11 +3,11 @@ import { FacebookAuthProvider, getAuth, GoogleAuthProvider } from "firebase/auth
 
 const firebaseConfig = {
   apiKey:"AIzaSyDTpZspon8vV9sJGL6JCmK4UvpuQsTXtsY",
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID
+  authDomain: "cashbook-devwitheasy.firebaseapp.com",
+  projectId: "cashbook-devwitheasy",
+  storageBucket: "cashbook-devwitheasy.appspot.com",
+  messagingSenderId: "648267390074",
+  appId: "1:648267390074:web:7becf69557f782677dafc3"
 };
 
 // Initialize Firebase
