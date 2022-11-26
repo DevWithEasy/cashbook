@@ -1,9 +1,9 @@
+import Head from "next/head";
 import { useState } from "react";
 import { Toaster } from 'react-hot-toast';
 import { AiOutlineCamera } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteAccount from "../../components/DeleteAccount";
-import DeleteEntry from "../../components/DeleteAccount";
 import Header from "../../components/Header";
 import UpdateProfile from "../../components/UpdateProfile";
 import UpdateProfilePhoto from "../../components/UpdateProfilePhoto";
@@ -32,6 +32,11 @@ export default function Profile(){
     }
     return(
         <div className="profile">
+            <Head>
+                <title>{user.name} cashbook account</title>
+                <meta name="description" content="CashBook App Profile" />
+                <link rel="icon" href="/favicon.ico" />
+             </Head>
             <Header/>
             <div className="info">
                 <div className="profile_image">

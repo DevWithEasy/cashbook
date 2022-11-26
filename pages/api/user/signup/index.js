@@ -13,13 +13,12 @@ export default async function handler(req, res){
         //find exists userEmail
         const findUser = await User.findOne({email: email})
         
-        if(findUser){
-            res.status(405).json({
+        if(findUser) return res.status(405).json({
                 success : "failed",
                 status:405,
                 message:"User already exists"
             })
-        }
+        
 
         //generate hash password
         const hashed = await bcrypt.hash(req.body.password,10)

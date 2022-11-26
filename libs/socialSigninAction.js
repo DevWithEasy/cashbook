@@ -1,6 +1,6 @@
 import axios from "axios";
-import { signInWithPopup} from "firebase/auth";
-import { auth, facebookProvider, googleProvider,  } from "../utils/firebase";
+import { signInWithPopup,linkWithPopup} from "firebase/auth";
+import { auth, facebookProvider, googleProvider } from "../utils/firebase";
 import { notificationNOT, notificationOK } from "../utils/toastNotification";
 export async function googleSignIn(router,dispatch,action) {
     try {

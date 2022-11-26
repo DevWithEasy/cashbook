@@ -7,6 +7,7 @@ import { findAccount } from "../../libs/AllUserAction"
 import { forgetVerify, sendForgetMail } from "../../libs/verifyAccount"
 import user_image from "../../public/image/profile.png"
 import logo from "../../public/image/forget.png"
+import Head from "next/head"
 
 export default function Forget(){
     const router = useRouter()
@@ -19,6 +20,11 @@ export default function Forget(){
     const [user,setUser] = useState({})
     return(
         <div className="relative flex justify-center min-h-screen pt-16 pb-4 bg-gray-300">
+            <Head>
+                <title>Forget password</title>
+                <meta name="description" content="Forget CashBook" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <Header/>
             <div className="flex justify-between w-8/12 bg-gray-100 p-4 rounded-md">
                 <div className="hidden w-1/2 md:flex justify-center items-center bg-blue-200 rounded-md p-4">
