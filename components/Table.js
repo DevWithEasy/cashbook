@@ -49,7 +49,7 @@ const Table = ({entries,setUpdateId,setDeleteId,setUpdate,setRemove}) => {
                         </Link>
                         <p className='flex justify-between border-t text-xs px-2 py-1'>
                             <span>This entry created at {new Date(entry.createdAt).toLocaleTimeString()}</span>
-                            <span>Balance : 1200/-</span>
+                            {/* <span>Balance : 1200/-</span> */}
                         </p>
                     </div>)
                 }
