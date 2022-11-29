@@ -1,12 +1,27 @@
 import Link from 'next/link';
 import React from 'react';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
+import Balance from './Balance';
 
 const Table = ({entries,setUpdateId,setDeleteId,setUpdate,setRemove}) => {
     const action = (id,setId,setView)=>{
         setId(id);
         setView(true);
     }
+    // const credit = entries.filter(e=>e.entryType === "Credit").reduce((a,i)=>a+parseInt(i.amount),0)
+    // const debit = entries.filter(e=>e.entryType === "Debit").reduce((a,i)=>a+parseInt(i.amount),0)
+    // const balance = credit - debit
+    // const newarray = entries.map(entry=>{
+    //     if(entry.entryType === "Credit"){
+    //         let equal = 0
+    //         const credit = entries.filter(e=>e.entryType === "Credit").reduce((a,i)=>a+parseInt(i.amount),0)
+    //         equal = credit + entry.amount
+    //         return {...entry,balance: equal}
+    //     }else{
+    //         return {...entry,balance: credit-entry.amount}
+    //     }
+    // });
+    // console.log(newarray)
     return (
         <div className="entry_list">
             <div className="space-y-2 pb-4">
@@ -40,32 +55,6 @@ const Table = ({entries,setUpdateId,setDeleteId,setUpdate,setRemove}) => {
                 }
             </div>
         </div>
-        // <table>
-        //     <thead>
-        //         <tr>
-        //             <td>Date</td>
-        //             <td>Type</td>
-        //             <td>Amount</td>
-        //             <td>Remarks</td>
-        //             <td>Actions</td>
-        //         </tr>
-        //     </thead>
-        //     <tbody>
-        //         {
-        //             entries.length>0 && entries.map((entry) =><tr key={entry._id}>
-        //             <td>{new Date(entry.createdAt).toDateString()}</td>
-        //             <td>{entry.entryType === "Credit" ? <span className='text-green-500'>{entry.entryType}</span> : <span className='text-red-500'>{entry.entryType}</span>}</td>
-        //             <td>{entry.amount}</td>
-        //             <td>{entry.remark}</td>
-        //             <td className='edit'>
-        //                 <AiOutlineEdit className='update' size={25} onClick={()=>action(entry,setUpdateId,setUpdate)}/>
-        //                 <AiOutlineDelete className='delete' size={25} onClick={()=>action(entry._id,setDeleteId,setRemove)}/>
-        //                 <BiDetail className='details' size={25} onClick={()=>action(entry._id,setDeleteId,setRemove)}/>
-        //             </td>
-        //         </tr>)
-        //         }
-        //     </tbody>
-        // </table>
     );
 };
 
