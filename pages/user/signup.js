@@ -5,7 +5,8 @@ import React, { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { BsFacebook } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
-import { MdOutlineEmail, MdOutlineRemoveRedEye } from 'react-icons/md';
+import { MdOutlineEmail } from 'react-icons/md';
+import {AiOutlineEye,AiOutlineEyeInvisible} from 'react-icons/ai'
 import { useDispatch } from 'react-redux';
 import Header from '../../components/Header';
 import { signup } from '../../libs/AllUserAction';
@@ -13,10 +14,13 @@ import {facebookSignIn, googleSignIn} from '../../libs/socialSigninAction';
 import img from '../../public/image/signup.png';
 import { login } from '../../store/slice/authSlice';
 import handleSignupInput from '../../utils/handleSignupInput';
+import Head from 'next/head';
 
 export default function Signup(){
     const router = useRouter()
     const dispatch = useDispatch()
+    const [type,setType] = useState('password')
+    const [visible,setVisible] = useState(false)
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState({
         name :'',
@@ -36,8 +40,22 @@ export default function Signup(){
             url :'',
         }
     })
+    function handleVisible(){
+        if(type === 'password'){
+            setType('text')
+            setVisible(!visible)
+        }else{
+            setType('password')
+            setVisible(!visible)
+        }
+    }
     return (
         <div className='signup relative min-h-screen pt-16 pb-4 bg-gray-300'>
+            <Head>
+                <title>Create new account</title>
+                <meta name="description" content="CashBook App  create new account" />
+                <link rel="icon" href="/favicon.ico" />
+             </Head>
             <Header/>
             <div className="signup_area w-11/12 mx-auto flex justify-between bg-gray-100 rounded-md p-2">
                 <div className="image hidden w-1/2 bg-blue-300 rounded-md md:flex justify-center items-center">
@@ -62,13 +80,17 @@ export default function Signup(){
                                 {error.number && <p className='text-red-500'>{error.number}</p>}
                             </div>
                             <div className='relative'>
-                                <input type="text" name="password" onChange={(e)=>handleSignupInput(e,value,setValue,error,setError)} placeholder='Password' className='w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2' required/>
-                                <span className='absolute -translate-x-7 translate-y-3 text-gray-300'><MdOutlineRemoveRedEye size={20}/></span>
+                                <input type={type} name="password" onChange={(e)=>handleSignupInput(e,value,setValue,error,setError)} placeholder='Password' className='w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2' required/>
+                                <span className='absolute -translate-x-7 translate-y-3 text-gray-300'>
+                                {!visible ? <AiOutlineEye onClick={()=>handleVisible()} size={20} className='icon'/> : <AiOutlineEyeInvisible onClick={()=>handleVisible()} size={20} className='icon'/>}
+                                </span>
                                 {error.password && <p className='text-red-500'>{error.password}</p>}
                             </div>
                             <div className='relative'>
-                                <input type="text" name="confirm_password" onChange={(e)=>handleSignupInput(e,value,setValue,error,setError)} placeholder='Confirm password' className='w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2' required/>
-                                <span className='absolute -translate-x-7 translate-y-3 text-gray-300'><MdOutlineRemoveRedEye size={20}/></span>
+                                <input type={type} name="confirm_password" onChange={(e)=>handleSignupInput(e,value,setValue,error,setError)} placeholder='Confirm password' className='w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2' required/>
+                                <span className='absolute -translate-x-7 translate-y-3 text-gray-300'>
+                                {!visible ? <AiOutlineEye onClick={()=>handleVisible()} size={20} className='icon'/> : <AiOutlineEyeInvisible onClick={()=>handleVisible()} size={20} className='icon'/>}
+                                </span>
                                 {error.confirm_password && <p className='text-red-500'>{error.confirm_password}</p>}
                             </div>
                             <div className="">
