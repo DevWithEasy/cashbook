@@ -13,13 +13,4 @@ export default function Index(){
   if(user.email && !user.isVerified){
     router.push("/user/verify_account")
   }
-  // if (user.email) {
-  //   if(!user.isVerified){
-  //     router.push("/user/verify_account")
-  //   }else{
-  //     router.push("/books")
-  //   }
-  // }else{
-  //   router.push('/user/signin')
-  // }
 }

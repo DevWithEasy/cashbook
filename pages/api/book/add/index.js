@@ -1,5 +1,6 @@
 import initDatabase from "../../../../database/initDatabase";
 import Book from "../../../../database/model/Book";
+import User from "../../../../database/model/User";
 
 export default async function handler(req, res){
     initDatabase()
@@ -8,6 +9,7 @@ export default async function handler(req, res){
             ...req.body
         })
         const book = await newBook.save()
+        await User.findByIdAndUpdate(req.body.user,{$push : {books : book._id}})
         res.status(200).json({
             success : "success",
             status:200,

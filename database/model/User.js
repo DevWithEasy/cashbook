@@ -32,7 +32,13 @@ const userSchema = mongoose.Schema({
     isFromGoogle :{
         type:Boolean,
         default : false
-    }
+    },
+    books : [
+        {
+            type:mongoose.Types.ObjectId,
+            ref:'Book'
+        }
+    ]
 })
 
 const User = mongoose.models.User || mongoose.model('User',userSchema)
