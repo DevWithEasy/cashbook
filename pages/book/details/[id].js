@@ -17,15 +17,12 @@ import UpdateEntry from "../../../components/UpdateEntry";
 import getAllEntry from "../../../libs/getAllEntry";
 import getSingleBook from "../../../libs/getSingleBook";
 import { addEntries, currentBook } from "../../../store/slice/bookSlice";
+import { useDisclosure } from '@chakra-ui/react';
 
 export default function Books(){
     const [setting,setSetting] = useState(false)
-    const [add,setAdd] = useState(false)
-    const [out,setOut] = useState(false)
     const [update,setUpdate] = useState(false)
     const [remove,setRemove] = useState(false)
-    const [removeBook,setRemoveBook] = useState(false)
-    const [updateBook,setUpdateBook] = useState(false)
     const [deleteId,setDeleteId] = useState("")
     const [updateId,setUpdateId] = useState("")
     const dispatch = useDispatch()
@@ -50,14 +47,8 @@ export default function Books(){
                 </div>
                 {
                     setting && <div className="setting">
-                        <button onClick={()=>setUpdateBook(true)}>
-                            <MdDriveFileRenameOutline/>
-                            <span>Rename</span>
-                        </button>
-                        <button onClick={()=>setRemoveBook(true)}>
-                            <AiOutlineDelete/>
-                            <span>Delete</span>
-                        </button>
+                        <UpdateBook/>
+                        <DeleteBook/>
                     </div>
                 }
             </div>
@@ -67,38 +58,13 @@ export default function Books(){
                 </div>
                 <div className="entry">
                     <div className="">
-                        <button className="in" onClick={()=>setAdd(true)}>
-                            <AiOutlinePlus/>
-                            <span>Cash in</span>
-                        </button>
-                        <button className="out" onClick={()=>setOut(true)}>
-                            <AiOutlineMinus/>
-                            <span>Cash out</span>
-                        </button>
+                        <CashIn/>
+                        <CashOut/>
                     </div>
                 </div>
             </div>
             <Balance entries={allEntries}/>
             {allEntries.length === 0 ? <NoData/> : <Table entries={allEntries} setUpdateId={setUpdateId} setDeleteId={setDeleteId} setUpdate={setUpdate} setRemove={setRemove}/>}
-            
-            {
-                add && <CashIn id={id} setAdd={setAdd}/>
-            }
-            {
-                out && <CashOut id={id} setOut={setOut}/>
-            }
-            {
-                update && <UpdateEntry updateId={updateId} setUpdate={setUpdate}/>
-            }
-            {
-                remove && <DeleteEntry deleteId={deleteId} setRemove={setRemove}/>
-            }
-            {
-                removeBook && <DeleteBook id={id} setRemoveBook={setRemoveBook}/>
-            }
-            {
-                updateBook && <UpdateBook setUpdateBook={setUpdateBook}/>
-            }
             <Toaster/>
         </div>
     )

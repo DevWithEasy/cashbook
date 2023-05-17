@@ -1,33 +1,55 @@
-import React, { useState } from 'react';
+import {
+    AlertDialog,
+    AlertDialogBody,
+    AlertDialogContent,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogOverlay,
+    Button,
+    useDisclosure
+} from '@chakra-ui/react';
+import React from 'react';
+import { AiOutlineDelete } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { deleteEntry } from '../libs/allEntryAction';
 import { removeEntry } from '../store/slice/bookSlice';
-import Trying from './Trying';
 
-const DeleteEntry = ({deleteId,setRemove}) => {
+const DeleteEntry = ({entry}) => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = React.useRef()
     const dispatch = useDispatch();
-    const [loading,setLoading] = useState(false)
     return (
-        <div className='add_new'>
-            <div className="">
-                <h3>
-                    <span>ARE YOU SURE ?</span>
-                    <span className='close' onClick={()=>setRemove(false)}>X</span>
-                </h3>
-                <hr />
-                <div className="input">
-                   This entry will be delete parmanently.you cannot back this item again.
-                </div>
-                <hr />
-                <div className="submit">
-                    {
-                        loading && <Trying text='Deleting'/>
-                    }
-                    <button className='cancel hidden sm:block' onClick={()=>setRemove(false)}>CANCEL</button>
-                    <button className='delete' onClick={()=>deleteEntry(deleteId,setRemove,setLoading,dispatch,removeEntry)}>DELETE</button>
-                </div>
-            </div>
-        </div>
+        <>
+
+      <AiOutlineDelete className='text-red-500 cursor-pointer' size={20} onClick={onOpen}/>
+
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+              Delete Customer
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              Are you sure? You cant undo this action afterwards.
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button colorScheme='red' onClick={()=>deleteEntry(entry._id,dispatch,removeEntry,onClose)} ml={3}>
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+    </>
     );
 };
 

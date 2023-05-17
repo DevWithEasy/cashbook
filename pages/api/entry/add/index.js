@@ -1,12 +1,13 @@
 import initDatabase from "../../../../database/initDatabase";
 import Post from "../../../../database/model/Post";
+import authentication from "../../../../utils/authentication";
 
-export default async function handler(req, res){
+async function handler(req, res){
     initDatabase()
     try{
-        
         const newPost= new Post({
-            ...req.body
+            ...req.body,
+            user : req.user.id
         })
         const post = await newPost.save()
         res.status(200).json({
@@ -23,3 +24,5 @@ export default async function handler(req, res){
         })
     }
 }
+
+export default authentication(handler)

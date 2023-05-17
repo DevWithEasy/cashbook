@@ -58,7 +58,7 @@ export default function Signup(){
              </Head>
             <Header/>
             <div className="signup_area w-11/12 mx-auto flex justify-between bg-gray-100 rounded-md p-2">
-                <div className="image hidden w-1/2 bg-blue-300 rounded-md md:flex justify-center items-center">
+                <div className="image hidden w-1/2 bg-blue-300 rounded-md md:flex justify-center items-center shrink-0">
                     <Image src={img} width='300' height='300' alt="signup"/>
                 </div>
                 <div className="w-full md:w-1/2">

@@ -5,43 +5,84 @@ import { addEntry } from '../store/slice/bookSlice';
 import handleInput from '../utils/handleInput';
 import Trying from './Trying';
 import {MdLibraryAdd,MdAddCircle} from "react-icons/md"
+import {
+    Button,
+    FormControl,
+    Input,
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    ModalOverlay,
+    useDisclosure
+} from '@chakra-ui/react';
+import { AiOutlineMinus } from 'react-icons/ai';
 
-const CashOut = ({id,setOut}) => {
-    const user = useSelector(state=> state.auth.user)
+const CashOut = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const book = useSelector(state=>state.book.currentBook)
     const dispatch = useDispatch()
-    const [loading,setLoading] = useState(false)
     const [value,setValue] = useState({
-        book : id,
-        user : user._id,
+        book : book._id,
         amount : '',
         entryType : 'Debit',
         remark : '',
         history : []
     })
     return (
-        <div className='add_new'>
-            <div className="">
-                <h3>
-                    <span>ADD NEW ENTRY</span>
-                    <span className='close' onClick={()=>setOut(false)}>X</span>
-                </h3>
-                <hr />
-                <div className="input">
-                    <label htmlFor="">Amount</label>
-                    <input type="number" name="amount" placeholder='e.g- 100' value={value?.amount} onChange={(e)=>handleInput(e,value,setValue)}/>
+        <>
+        <button className="out" onClick={onOpen}>
+            <AiOutlineMinus/>
+            <span>Cash out</span>
+        </button>
+  
+        <Modal
+          isOpen={isOpen}
+          onClose={onClose}
+        >
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Create new entry</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <FormControl>
+                    <label htmlFor="amount">Amount</label>
+                    <Input 
+                        type="number" 
+                        name="amount" 
+                        placeholder='100' 
+                        onChange={(e)=>handleInput(e,value,setValue)}
+                    />
                     <label htmlFor="">Remarks</label>
-                    <input type="text" name="remark" placeholder='e.g- Rent Bus' value={value?.remark} onChange={(e)=>handleInput(e,value,setValue)}/>
-                </div>
-                <hr />
-                <div className="submit">
-                    {
-                        loading && <Trying text='Wait'/>
-                    }
-                    <button className='out' onClick={()=>createEntryOther(id,user._id,value,setValue,"Debit",setLoading,dispatch,addEntry)}><MdLibraryAdd/></button>
-                    <button className='out' onClick={()=>createEntry(value,setOut,setLoading,dispatch,addEntry)}><MdAddCircle/></button>
-                </div>
-            </div>
-        </div>
+                    <Input 
+                        type="text" 
+                        name="remark" 
+                        placeholder='Salary' 
+                        onChange={(e)=>handleInput(e,value,setValue)}
+                    />
+              </FormControl>
+            </ModalBody>
+  
+            <ModalFooter>
+              <Button 
+                onClick={()=>createEntryOther(book._id,value,setValue,"Debit",dispatch,addEntry)}
+                colorScheme='blue'
+                mr={3}
+            >
+                <MdLibraryAdd/>
+            </Button>
+                <Button  
+                    onClick={()=>createEntry(book._id,value,setValue,'Debit',dispatch,addEntry,onClose)}
+                    colorScheme='blue' 
+                >
+                    <MdAddCircle/>
+                </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </>
     );
 };
 

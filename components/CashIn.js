@@ -1,48 +1,87 @@
+import {
+    Button,
+    FormControl,
+    Input,
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    ModalOverlay,
+    useDisclosure
+} from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { MdAddCircle, MdLibraryAdd } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { createEntry, createEntryOther } from '../libs/allEntryAction';
 import { addEntry } from '../store/slice/bookSlice';
 import handleInput from '../utils/handleInput';
-import Trying from './Trying';
-import {MdLibraryAdd,MdAddCircle} from "react-icons/md"
 
-const CashIn = ({id,setAdd}) => {
-    const user = useSelector(state=> state.auth.user)
+const CashIn = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const book = useSelector(state=>state.book.currentBook)
     const dispatch = useDispatch()
-    const [loading,setLoading] = useState(false)
     const [value,setValue] = useState({
-        book : id,
-        user : user._id,
+        book : book._id,
         amount : '',
         entryType : 'Credit',
         remark : '',
         history : []
     })
     return (
-        <div className='add_new'>
-            <div className="">
-                <h3>
-                    <span>ADD NEW ENTRY</span>
-                    <span className='close' onClick={()=>setAdd(false)}>X</span>
-                </h3>
-                <hr />
-                <div className="input">
+        <>
+        <button className="in" onClick={onOpen}>
+            <AiOutlinePlus/>
+            <span>Cash in</span>
+        </button>
+  
+        <Modal
+          isOpen={isOpen}
+          onClose={onClose}
+        >
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Create new entry</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <FormControl>
                     <label htmlFor="amount">Amount</label>
-                    <input type="number" name="amount" placeholder='e.g- 100' value={value.amount} onChange={(e)=>handleInput(e,value,setValue)}/>
+                    <Input 
+                        type="number" 
+                        name="amount" 
+                        placeholder='100' 
+                        onChange={(e)=>handleInput(e,value,setValue)}
+                    />
                     <label htmlFor="">Remarks</label>
-                    <input type="text" name="remark" placeholder='e.g- Salary' value={value.remark} onChange={(e)=>handleInput(e,value,setValue)}/>
-                </div>
-                <hr />
-                    
-                <div className="submit">
-                    {
-                        loading && <Trying text='Wait'/>
-                    }
-                    <button className='in' onClick={()=>createEntryOther(id,user._id,value,setValue,"Credit",setLoading,dispatch,addEntry)}><MdLibraryAdd/></button>
-                    <button className='in' onClick={()=>createEntry(value,setAdd,setLoading,dispatch,addEntry)}><MdAddCircle/></button>
-                </div>
-            </div>
-        </div>
+                    <Input 
+                        type="text" 
+                        name="remark" 
+                        placeholder='Salary' 
+                        onChange={(e)=>handleInput(e,value,setValue)}
+                    />
+              </FormControl>
+            </ModalBody>
+  
+            <ModalFooter>
+              <Button 
+                onClick={()=>createEntryOther(book._id,value,setValue,"Credit",dispatch,addEntry)}
+                colorScheme='blue'
+                mr={3}
+            >
+                <MdLibraryAdd/>
+            </Button>
+                <Button  
+                    onClick={()=>createEntry(book._id,value,setValue,'Credit',dispatch,addEntry,onClose)}
+                    colorScheme='blue' 
+                >
+                    <MdAddCircle/>
+                </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </>
     );
 };
 

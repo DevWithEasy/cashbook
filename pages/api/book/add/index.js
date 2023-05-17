@@ -1,15 +1,20 @@
 import initDatabase from "../../../../database/initDatabase";
 import Book from "../../../../database/model/Book";
 import User from "../../../../database/model/User";
+import authentication from "../../../../utils/authentication";
 
-export default async function handler(req, res){
+async function handler(req, res){
     initDatabase()
     try{
+        console.log({
+            ...req.body,user : req.user
+        })
         const newBook = new Book({
-            ...req.body
+            ...req.body,
+            user : req.user.id
         })
         const book = await newBook.save()
-        await User.findByIdAndUpdate(req.body.user,{$push : {books : book._id}})
+        await User.findByIdAndUpdate(req.user.id,{$push : {books : book._id}})
         res.status(200).json({
             success : "success",
             status:200,
@@ -24,3 +29,4 @@ export default async function handler(req, res){
         })
     }
 }
+export default authentication(handler);

@@ -15,6 +15,7 @@ export default function authentication(handler){
                 message : "Token is not valid."
             })
             req.user = user
+            
         })
         return handler(req,res)
     }

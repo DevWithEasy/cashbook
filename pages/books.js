@@ -2,25 +2,34 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { FcDocument } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
 import AddBook from '../components/AddBook';
 import Header from '../components/Header';
-import getAllBook from '../libs/getAllBook';
 import { addBooks } from '../store/slice/bookSlice';
+import axios from 'axios';
 
 
 export default function Home() {
-  const user = useSelector(state=> state.auth.user)
+  const {user,random} = useSelector(state=> state.auth)
   const allBooks = useSelector(state=> state.book.books)
   const dispatch = useDispatch()
   const [search,setSearch] = useState("")
-  const [add,setAdd] = useState(false)
-  const [books,setBooks] = useState({})
+
+  const getAllBook =async()=>{
+    try{
+      const res = await axios.get(`/api/book/all/${user?._id}`)
+      if(res.data.data){
+        dispatch(addBooks(res.data.data))
+      }
+    }catch(err){
+      console.log(err.message)
+    }
+}
+
   useEffect(()=>{
-    getAllBook(user._id,dispatch,addBooks)
-  },[dispatch, user._id,allBooks])
+    getAllBook()
+  },[random])
   return (
     <div className=''>
       <Head>
@@ -31,10 +40,11 @@ export default function Home() {
       <div className='index'>
         <Header/>
         <div className="add_book">
-          <button onClick={()=>setAdd(true)}>
+          {/* <button onClick={()=>setAdd(true)}>
             <AiOutlinePlusCircle/>
             <span>ADD BOOK</span>
-          </button>
+          </button> */}
+          <AddBook/>
         </div>
         <div className="book_list">
           <div className="search">
@@ -56,9 +66,6 @@ export default function Home() {
               }
           </div>
         </div>
-        {
-          add && <AddBook setAdd={setAdd}/>
-        }
         <Toaster/>
       </div>
     </div>

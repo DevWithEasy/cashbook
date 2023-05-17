@@ -16,7 +16,7 @@ const bookSlice = createSlice({
             state.currentBook = action.payload
         },
         addBook:(state,action)=>{
-            state.books = [...state.books,action.payload]
+            state.books = [action.payload,...state.books]
         },
         removeBook:(state,action)=>{
             state.books = state.books.filter(book => book.id!= action.payload)

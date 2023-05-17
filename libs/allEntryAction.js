@@ -1,33 +1,42 @@
 import axios from "axios"
 import { notificationNOT, notificationOK } from "../utils/toastNotification"
 
-export const createEntry = async(value,setView,setLoading,dispatch,action)=>{
+export const createEntry = async(id,value,setValue,type,dispatch,action,onClose)=>{
     try {
-        setLoading(true)
-        const res = await axios.post(`/api/entry/add`,value)
+        const res = await axios.post(`/api/entry/add`,value,{
+            headers: {
+                "cb-access-token": localStorage.getItem("cb_access_token")
+            }
+        })
         if(res.data.data){
             notificationOK(res.data.message)
-            setLoading(false)
             dispatch(action(res.data.data))
-            setView(false)
+            setValue({
+                book : id,
+                amount : '',
+                entryType : type,
+                remark : '',
+                history : []
+            })
+            onClose()
         }
     } catch (err) {
         notificationNOT(err.message)
     }
 }
 
-export const createEntryOther = async(id,userId,value,setValue,type,setLoading,dispatch,action)=>{
+export const createEntryOther = async(id,value,setValue,type,dispatch,action)=>{
     try {
-        setLoading(true)
-        const res = await axios.post(`/api/entry/add`,value)
+        const res = await axios.post(`/api/entry/add`,value,{
+            headers: {
+                "cb-access-token": localStorage.getItem("cb_access_token")
+            }
+        })
         if(res.data.data){
             notificationOK(res.data.message)
-            setLoading(false)
             dispatch(action(res.data.data))
-            setValue({})
             setValue({
                 book : id,
-                user : userId,
                 amount : '',
                 entryType : type,
                 remark : '',
@@ -39,30 +48,26 @@ export const createEntryOther = async(id,userId,value,setValue,type,setLoading,d
     }
 }
 
-export const deleteEntry = async(id,setShow,setLoading,dispatch,action)=>{
+export const deleteEntry = async(id,dispatch,action,onClose)=>{
     try {
-        setLoading(true)
         const res = await axios.delete(`/api/entry/${id}`)
         if(res.data.status === 200){
             notificationOK(res.data.message)
-            setLoading(false)
             dispatch(action(id))
-            setShow(false)
+            onClose()
         }
     } catch (err) {
         notificationNOT(err.message)
     }
 }
 
-export const updateEntry = async(id,value,setShow,setLoading,dispatch,action)=>{
+export const updateEntry = async(id,value,dispatch,action,onClose)=>{
     try {
-        setLoading(true)
         const res = await axios.put(`/api/entry/${id}`,value)
         if(res.data.status === 200){
             notificationOK(res.data.message)
-            setLoading(false)
             dispatch(action(res.data.data))
-            setShow(false)
+            onClose()
         }
     } catch (err) {
         notificationNOT(err.message)

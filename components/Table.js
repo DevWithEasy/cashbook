@@ -2,6 +2,8 @@ import Link from 'next/link';
 import React from 'react';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import Balance from './Balance';
+import EditEntry from './UpdateEntry';
+import DeleteEntry from './DeleteEntry';
 
 const Table = ({entries,setUpdateId,setDeleteId,setUpdate,setRemove}) => {
     const action = (id,setId,setView)=>{
@@ -30,8 +32,8 @@ const Table = ({entries,setUpdateId,setDeleteId,setUpdate,setRemove}) => {
                         <div className='realtive flex justify-between items-center bg-gray-300 px-2 py-1'>
                             <span>{new Date(entry.createdAt).toDateString()}</span>
                             <div className="flex items-center space-x-4">
-                                <AiOutlineEdit className='text-blue-500 cursor-pointer' size={20} onClick={()=>action(entry,setUpdateId,setUpdate)}/>
-                                <AiOutlineDelete className='text-red-500 cursor-pointer' size={20} onClick={()=>action(entry._id,setDeleteId,setRemove)}/>
+                                <EditEntry {...{entry}}/>
+                                <DeleteEntry {...{entry}}/>
                             </div>
                         </div>
                         <Link href={`/entry/details/${entry._id}`}>
