@@ -37,6 +37,7 @@ const UpdateBook = ({id,setUpdateBook}) => {
 <Modal
   isOpen={isOpen}
   onClose={onClose}
+  isCentered
 >
   <ModalOverlay />
   <ModalContent>

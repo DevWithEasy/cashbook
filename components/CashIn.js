@@ -40,6 +40,7 @@ const CashIn = () => {
         <Modal
           isOpen={isOpen}
           onClose={onClose}
+          isCentered
         >
           <ModalOverlay />
           <ModalContent>

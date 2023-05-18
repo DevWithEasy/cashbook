@@ -27,6 +27,7 @@ const EditEntry = ({entry,setUpdate}) => {
         <Modal
           isOpen={isOpen}
           onClose={onClose}
+          isCentered
         >
           <ModalOverlay />
           <ModalContent>

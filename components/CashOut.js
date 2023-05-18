@@ -41,6 +41,7 @@ const CashOut = () => {
         <Modal
           isOpen={isOpen}
           onClose={onClose}
+          isCentered
         >
           <ModalOverlay />
           <ModalContent>

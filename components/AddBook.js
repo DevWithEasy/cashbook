@@ -28,12 +28,14 @@ export default function AddBook() {
         <Modal
           isOpen={isOpen}
           onClose={onClose}
+          isCentered
+          
         >
           <ModalOverlay />
-          <ModalContent>
+          <ModalContent className='mx-2'>
             <ModalHeader>Create new book</ModalHeader>
             <ModalCloseButton />
-            <ModalBody pb={6}>
+            <ModalBody pb={6} >
               <FormControl>
                 <FormLabel>Book name</FormLabel>
                 <Input placeholder='Daily Expense' onChange={(e)=>setName(e.target.value)} />
