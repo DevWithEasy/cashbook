@@ -37,7 +37,7 @@ const Header = () => {
                     </MenuButton>
                     <MenuList p='4px' color='black'>
                         {!user.email && <MenuItem  className='rounded-md hover:bg-blue-500 hover:text-white transition-all duration-300'>
-                            <Link href='/user/signup'>
+                            <Link href='/user/signup' className='block'>
                                 <a className='flex items-center space-x-2'>
                                     <AiOutlineUserAdd/>
                                     <span>Sign up</span>
@@ -45,7 +45,7 @@ const Header = () => {
                             </Link>
                         </MenuItem>}
                         {!user.email && <MenuItem className='rounded-md hover:bg-blue-500 hover:text-white transition-all duration-300'>
-                            <Link href='/user/signin'>
+                            <Link href='/user/signin' className='block'>
                                 <a className='flex items-center space-x-2'>
                                     <AiOutlineLogin/>
                                     <span>Sign in</span>
@@ -53,7 +53,7 @@ const Header = () => {
                             </Link>
                         </MenuItem>}
                         {user.name && <MenuItem  className='rounded-md hover:bg-blue-500 hover:text-white transition-all duration-300'>
-                            <Link href='/user/profile'>
+                            <Link href='/user/profile' className='block'>
                                 <a className='flex items-center space-x-2'>
                                     <BiUserCircle/>
                                     <span>Account</span>
@@ -61,7 +61,7 @@ const Header = () => {
                             </Link>
                         </MenuItem>}
                         <MenuItem className='rounded-md hover:bg-blue-500 hover:text-white transition-all duration-300'>
-                            <Link href='/'>
+                            <Link href='/' className='block'>
                                 <a className='flex items-center space-x-2'>
                                     <BsBook/>
                                     <span>All Books</span>
@@ -69,7 +69,7 @@ const Header = () => {
                             </Link>
                         </MenuItem>
                         <MenuItem  className='rounded-md hover:bg-blue-500 hover:text-white transition-all duration-300'>
-                            <Link href='/settings'>
+                            <Link href='/settings' className='block'>
                                 <a className='flex items-center space-x-2'>
                                     <AiOutlineSetting/>
                                     <span>Settings</span>
@@ -77,7 +77,7 @@ const Header = () => {
                             </Link>
                         </MenuItem>
                         <MenuItem className='rounded-md hover:bg-blue-500 hover:text-white transition-all duration-300'>
-                            <Link href='/abouts'>
+                            <Link href='/abouts' className='block'>
                                 <a className='flex items-center space-x-2'>
                                     <AiOutlineInfoCircle/>
                                     <span>Abouts</span>
