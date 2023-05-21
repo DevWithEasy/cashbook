@@ -9,6 +9,7 @@ import {
     ModalFooter,
     ModalHeader,
     ModalOverlay,
+    Spinner,
     useDisclosure
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
@@ -21,6 +22,8 @@ import handleInput from '../utils/handleInput';
 
 const CashIn = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [loading,setLoading] = useState(false)
+    const [loading2,setLoading2] = useState(false)
     const book = useSelector(state=>state.book.currentBook)
     const dispatch = useDispatch()
     const [value,setValue] = useState({
@@ -68,17 +71,17 @@ const CashIn = () => {
   
             <ModalFooter>
               <Button 
-                onClick={()=>createEntryOther(book._id,value,setValue,"Credit",dispatch,addEntry)}
+                onClick={()=>createEntryOther(book._id,value,setValue,"Credit",setLoading2,dispatch,addEntry)}
                 colorScheme='blue'
                 mr={3}
             >
-                <MdLibraryAdd/>
+                {loading2 ? <Spinner/> : <MdLibraryAdd/>}
             </Button>
                 <Button  
-                    onClick={()=>createEntry(book._id,value,setValue,'Credit',dispatch,addEntry,onClose)}
+                    onClick={()=>createEntry(book._id,value,setValue,'Credit',setLoading,dispatch,addEntry,onClose)}
                     colorScheme='blue' 
                 >
-                    <MdAddCircle/>
+                    {loading ? <Spinner/> : <MdAddCircle/>}
                 </Button>
             </ModalFooter>
           </ModalContent>

@@ -6,6 +6,7 @@ import {
     AlertDialogHeader,
     AlertDialogOverlay,
     Button,
+    Spinner,
     useDisclosure
 } from '@chakra-ui/react';
 import React from 'react';
@@ -13,9 +14,11 @@ import { AiOutlineDelete } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { deleteEntry } from '../libs/allEntryAction';
 import { removeEntry } from '../store/slice/bookSlice';
+import { useState } from 'react';
 
 const DeleteEntry = ({entry}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [loading,setLoading] = useState(false)
   const cancelRef = React.useRef()
     const dispatch = useDispatch();
     return (
@@ -43,8 +46,8 @@ const DeleteEntry = ({entry}) => {
               <Button ref={cancelRef} onClick={onClose}>
                 Cancel
               </Button>
-              <Button colorScheme='red' onClick={()=>deleteEntry(entry._id,dispatch,removeEntry,onClose)} ml={3}>
-                Delete
+              <Button colorScheme='red' onClick={()=>deleteEntry(entry._id,setLoading,dispatch,removeEntry,onClose)} ml={3}>
+              {loading ? <Spinner/> : 'Delete'}
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

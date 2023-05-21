@@ -9,6 +9,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Spinner,
   useDisclosure
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
@@ -48,10 +49,10 @@ const UpdateBook = ({id,setUpdateBook}) => {
 
     <ModalFooter>
         <Button  
-            onClick={(e)=>updateBook(book._id,value,dispatch,renameBook,onClose)}
+            onClick={(e)=>updateBook(book._id,value,setLoading,dispatch,renameBook,onClose)}
             colorScheme='blue' 
         >
-            Update
+            {loading ? <Spinner/> : 'Update'}
         </Button>
     </ModalFooter>
   </ModalContent>

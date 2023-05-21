@@ -14,16 +14,19 @@ import {
     AlertDialogCloseButton,
     Button,
     useDisclosure,
+    Spinner,
   } from '@chakra-ui/react'
 import { AiOutlineDelete } from 'react-icons/ai';
 
 
 const DeleteBook = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [loading,setLoading] = useState(false)
     const cancelRef = React.useRef()
     const book = useSelector(state=> state.book.currentBook)
     const dispatch = useDispatch();
     const router = useRouter();
+    
     return (
         <>
       <button  className='flex items-center space-x-2' onClick={onOpen}>
@@ -52,11 +55,11 @@ const DeleteBook = () => {
                 Cancel
               </Button>
               <Button 
-                onClick={()=>deleteBook(book._id,router,dispatch,removeBook)}
+                onClick={()=>deleteBook(book._id,router,setLoading,dispatch,removeBook)}
                 colorScheme='red'
                 ml={3}
                >
-                Delete
+                {loading ? <Spinner/> : 'Delete'}
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

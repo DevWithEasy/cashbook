@@ -20,26 +20,17 @@ import Table from "../../../components/Table";
 import UpdateBook from '../../../components/UpdateBook';
 import { addEntries, currentBook } from "../../../store/slice/bookSlice";
 import Head from 'next/head';
+import getSingleBook from '../../../libs/getSingleBook';
 
-export const getServerSideProps = async (context) => {
-    const {id} = context.params;
-    const res = await fetch(`http://localhost:3000/api/book/${id}`);
-    const {data} = await res.json();
-    return { props: { data } };
-};
-
-export default function Books({data}){
+export default function Books(){
     const dispatch = useDispatch()
     const router = useRouter()
+    const {id} = router.query
     const book = useSelector(state=>state.book.currentBook)
-    
-    function addBook(){
-        dispatch(currentBook(data))
-    }
 
     useEffect(()=>{
-        addBook()
-    },[])
+        if(id) {getSingleBook(id,dispatch,currentBook)}
+    },[dispatch, id])
     
     return(
         <div className="book_details">
@@ -75,8 +66,9 @@ export default function Books({data}){
                     </div>
                 </div>
             </div>
-            <Balance entries={book?.entries}/>
-            {book?.entries.length === 0 ? <NoData/> : <Table entries={book?.entries} />}
+            {book?.entries && <Balance entries={book?.entries}/>}
+            {book?.entries?.length < 1 && <NoData/>}
+            {book?.entries &&  <Table entries={book?.entries} />}
             <Toaster/>
         </div>
     )

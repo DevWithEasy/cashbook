@@ -15,15 +15,17 @@ import {
     FormLabel,
     Input,
     useDisclosure,
+    Spinner,
   } from '@chakra-ui/react'
 
 export default function AddBook() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [name,setName] = useState("")
     const dispatch = useDispatch()
+    const [loading,setLoading] = useState(false)
     return (
       <>
-        <Button onClick={onOpen}>Add Book</Button>
+        <button onClick={onOpen}>Add Book</button>
   
         <Modal
           isOpen={isOpen}
@@ -45,11 +47,11 @@ export default function AddBook() {
             <ModalFooter>
               <Button onClick={onClose} mr={3}>Cancel</Button>
               <Button
-                onClick={(e)=>createBook(name,dispatch,addBook,onClose)}
+                onClick={(e)=>createBook(name,setLoading,dispatch,addBook,onClose)}
                 colorScheme='blue' 
                 
               >
-                Save
+                {loading ? <Spinner/> : 'Save'}
               </Button>
             </ModalFooter>
           </ModalContent>
