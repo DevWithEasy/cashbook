@@ -35,7 +35,7 @@ const Header = () => {
                         {!user.image && <AiOutlineUserAdd/>}
                         {user.image && <img src={user?.image?.url} alt="profile" className='rounded-full'/>}
                     </MenuButton>
-                    <MenuList p='4px'>
+                    <MenuList p='4px' color='black'>
                         {!user.email && <MenuItem  className='rounded-md hover:bg-blue-500 hover:text-white transition-all duration-300'>
                             <Link href='/user/signup'>
                                 <a className='flex items-center space-x-2'>
