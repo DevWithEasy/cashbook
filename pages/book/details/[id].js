@@ -1,45 +1,52 @@
+import {
+    Button,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList
+} from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Toaster } from 'react-hot-toast';
-import { AiOutlineDelete, AiOutlineMinus, AiOutlinePlus, AiOutlineSetting } from 'react-icons/ai';
-import { MdDriveFileRenameOutline } from 'react-icons/md';
+import { AiOutlineSetting } from 'react-icons/ai';
 import { useDispatch, useSelector } from "react-redux";
 import Balance from "../../../components/Balance";
 import CashIn from "../../../components/CashIn";
 import CashOut from "../../../components/CashOut";
 import DeleteBook from '../../../components/DeleteBook';
-import DeleteEntry from "../../../components/DeleteEntry";
 import Header from "../../../components/Header";
 import NoData from '../../../components/NoData';
 import Table from "../../../components/Table";
 import UpdateBook from '../../../components/UpdateBook';
-import UpdateEntry from "../../../components/UpdateEntry";
-import getAllEntry from "../../../libs/getAllEntry";
-import getSingleBook from "../../../libs/getSingleBook";
 import { addEntries, currentBook } from "../../../store/slice/bookSlice";
-import { useDisclosure } from '@chakra-ui/react';
-import {
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
-    Button
-  } from '@chakra-ui/react'
+import Head from 'next/head';
 
-export default function Books(){
+export const getServerSideProps = async (context) => {
+    const {id} = context.params;
+    const res = await fetch(`http://localhost:3000/api/book/${id}`);
+    const {data} = await res.json();
+    return { props: { data } };
+};
+
+export default function Books({data}){
     const dispatch = useDispatch()
     const router = useRouter()
-    const { id } = router.query
-    const allEntries = useSelector(state=>state.book.entries)
     const book = useSelector(state=>state.book.currentBook)
+    
+    function addBook(){
+        dispatch(currentBook(data))
+    }
 
     useEffect(()=>{
-        getSingleBook(id,dispatch,currentBook)
-        getAllEntry(id,dispatch,addEntries)
-    },[dispatch,id])
+        addBook()
+    },[])
+    
     return(
         <div className="book_details">
             <Header/>
+            <Head>
+                <title>{book?.name}-details history all entries</title>
+            </Head>
             <div className="book_info">
                 <h3>{book?.name}</h3>
                 <Menu>
@@ -68,8 +75,8 @@ export default function Books(){
                     </div>
                 </div>
             </div>
-            <Balance entries={allEntries}/>
-            {allEntries.length === 0 ? <NoData/> : <Table entries={allEntries} />}
+            <Balance entries={book?.entries}/>
+            {book?.entries.length === 0 ? <NoData/> : <Table entries={book?.entries} />}
             <Toaster/>
         </div>
     )

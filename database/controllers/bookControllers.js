@@ -4,10 +4,11 @@ import Post from "../model/Post"
 export const getBook = async(req,res)=>{
     try {
         const book = await Book.findOne({"_id" : req.query.id})
+        const entries = await Post.find({book: book._id}).sort({createdAt: -1})
         res.status(200).json({
             success : "success",
             status:200,
-            data : book
+            data : {...book._doc,entries}
         })
     } catch (err) {
         res.status(500).json({

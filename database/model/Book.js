@@ -8,13 +8,7 @@ const bookSchema = mongoose.Schema({
     user:{
         type:mongoose.Types.ObjectId,
         ref:'User'
-    },
-    entries : [
-        {
-            type:mongoose.Types.ObjectId,
-            ref:'Post'
-        }
-    ]
+    }
 },{
     timestamps:true
 })

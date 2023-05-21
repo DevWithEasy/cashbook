@@ -25,7 +25,7 @@ const CashOut = () => {
     const book = useSelector(state=>state.book.currentBook)
     const dispatch = useDispatch()
     const [value,setValue] = useState({
-        book : book._id,
+        book : book?._id,
         amount : '',
         entryType : 'Debit',
         remark : '',

@@ -10,6 +10,7 @@ async function handler(req, res){
             user : req.user.id
         })
         const post = await newPost.save()
+        
         res.status(200).json({
             success : true,
             status:200,

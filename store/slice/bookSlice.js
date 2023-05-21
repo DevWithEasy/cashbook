@@ -23,21 +23,24 @@ const bookSlice = createSlice({
             state.currentBook = {}
         },
         renameBook:(state,action)=>{
-            state.currentBook = action.payload
+            state.currentBook = {...state.currentBook,name:action.payload}
         },
         addEntries:(state,action)=>{
             state.entries = action.payload
+            
         },
         addEntry:(state,action)=>{
-            state.entries.unshift(action.payload)
+            const entries = [action.payload,...state.currentBook.entries]
+            state.currentBook = {...state.currentBook, entries}
         },
         removeEntry:(state,action)=>{
-           const entries =  state.entries.filter(entry=>entry._id !== action.payload)
-           state.entries = entries
+           const entries =  state.currentBook.entries.filter(entry=>entry._id !== action.payload)
+           state.currentBook = {...state.currentBook, entries}
         },
         updatePrevEntry:(state,action)=>{
-            const entries =  state.entries.filter(entry=>entry._id !== action.payload._id)
-            state.entries = [action.payload,...entries]
+            const findEntries =  state.entries.filter(entry=>entry._id !== action.payload._id)
+            const entries = [action.payload,...findEntries]
+            state.currentBook = {...state.currentBook, entries}
         },
         logoutReset:(state,action)=>{
             state.books = []

@@ -23,7 +23,7 @@ export default function AddBook() {
     const dispatch = useDispatch()
     return (
       <>
-        <button onClick={onOpen}>Add Book</button>
+        <Button onClick={onOpen}>Add Book</Button>
   
         <Modal
           isOpen={isOpen}

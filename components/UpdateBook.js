@@ -1,31 +1,27 @@
-import React from 'react';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateBook} from '../libs/allBookAction';
-import { renameBook } from '../store/slice/bookSlice';
-import updateNotification from '../utils/toastNotification';
-import Trying from './Trying';
 import {
-    Button,
-    FormControl,
-    Input,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalFooter,
-    ModalHeader,
-    ModalOverlay,
-    useDisclosure
+  Button,
+  FormControl,
+  Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure
 } from '@chakra-ui/react';
-import { AiOutlinePlus } from 'react-icons/ai';
+import React, { useState } from 'react';
 import { MdDriveFileRenameOutline } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateBook } from '../libs/allBookAction';
+import { renameBook } from '../store/slice/bookSlice';
 
 const UpdateBook = ({id,setUpdateBook}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const book = useSelector(state=> state.book.currentBook)
     const [loading,setLoading] = useState(false)
-    const [value,setValue] = useState(book.name)
+    const [value,setValue] = useState(book?.name)
     const dispatch = useDispatch()
     return (
 <>

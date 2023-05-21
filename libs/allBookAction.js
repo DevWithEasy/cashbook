@@ -23,7 +23,7 @@ export const updateBook =async(id,value,dispatch,action,onClose)=>{
         const res = await axios.put(`/api/book/${id}`,{name : value})
         if(res.data.status === 200){
             notificationOK(res.data.message)
-            dispatch(action(res.data.data))
+            dispatch(action(res.data.data.name))
             onClose()
         }
     }catch(err){
