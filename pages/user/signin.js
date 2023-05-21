@@ -15,6 +15,8 @@ import img from '../../public/image/login.png';
 import { login } from '../../store/slice/authSlice';
 import handleSigninInput from '../../utils/handleSigninInput';
 import Head from 'next/head';
+import Lottie from 'react-lottie';
+import loginView from '../../public/data/login.json'
 
 export default function Signin(){
     const router = useRouter()
@@ -40,6 +42,15 @@ export default function Signin(){
             setVisible(!visible)
         }
     }
+
+    const defaultOptions = {
+        loop: true,
+        autoplay: true, 
+        animationData: loginView,
+        rendererSettings: {
+          preserveAspectRatio: 'xMidYMid slice'
+        }
+      };
     
     return (
         <div className='signup relative min-h-screen pt-16 pb-4 bg-gray-300'>
@@ -51,7 +62,11 @@ export default function Signin(){
             <Header/>
             <div className="signup_area w-11/12 mx-auto flex justify-between bg-gray-100 rounded-md p-2">
                 <div className="image shrink-0 hidden w-1/2 bg-blue-300 rounded-md md:flex flex-col justify-center pl-10">
-                    <Image src={img} width='400' height='400' alt="signup"/>
+                    <Lottie 
+                        options={defaultOptions}
+                        width={400} 
+                        height={400}
+                    />
                     
                 </div>
                 <div className="w-full md:w-1/2">

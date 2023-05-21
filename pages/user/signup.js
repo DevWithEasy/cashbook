@@ -1,20 +1,20 @@
-import Image from 'next/image';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { BsFacebook } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import { MdOutlineEmail } from 'react-icons/md';
-import {AiOutlineEye,AiOutlineEyeInvisible} from 'react-icons/ai'
+import Lottie from 'react-lottie';
 import { useDispatch } from 'react-redux';
 import Header from '../../components/Header';
 import { signup } from '../../libs/AllUserAction';
-import {facebookSignIn, googleSignIn} from '../../libs/socialSigninAction';
-import img from '../../public/image/signup.png';
+import { facebookSignIn, googleSignIn } from '../../libs/socialSigninAction';
+import signupView from '../../public/data/signup.json';
 import { login } from '../../store/slice/authSlice';
 import handleSignupInput from '../../utils/handleSignupInput';
-import Head from 'next/head';
 
 export default function Signup(){
     const router = useRouter()
@@ -49,6 +49,15 @@ export default function Signup(){
             setVisible(!visible)
         }
     }
+
+    const defaultOptions = {
+        loop: true,
+        autoplay: true, 
+        animationData: signupView,
+        rendererSettings: {
+          preserveAspectRatio: 'xMidYMid slice'
+        }
+      };
     return (
         <div className='signup relative min-h-screen pt-16 pb-4 bg-gray-300'>
             <Head>
@@ -59,7 +68,11 @@ export default function Signup(){
             <Header/>
             <div className="signup_area w-11/12 mx-auto flex justify-between bg-gray-100 rounded-md p-2">
                 <div className="image hidden w-1/2 bg-blue-300 rounded-md md:flex justify-center items-center shrink-0">
-                    <Image src={img} width='300' height='300' alt="signup"/>
+                    <Lottie 
+                        options={defaultOptions}
+                        width={400} 
+                        height={400}
+                    />
                 </div>
                 <div className="w-full md:w-1/2">
                     <form className="input p-4" onSubmit={(e)=>signup(e,value,router,setLoading)}>
