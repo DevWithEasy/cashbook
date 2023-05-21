@@ -38,7 +38,7 @@ const bookSlice = createSlice({
            state.currentBook = {...state.currentBook, entries}
         },
         updatePrevEntry:(state,action)=>{
-            const findEntries =  state.entries.filter(entry=>entry._id !== action.payload._id)
+            const findEntries =  state.currentBook.entries.filter(entry=>entry._id !== action.payload._id)
             const entries = [action.payload,...findEntries]
             state.currentBook = {...state.currentBook, entries}
         },
