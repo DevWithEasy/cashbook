@@ -30,6 +30,7 @@ const CashIn = () => {
         remark : '',
         history : []
     })
+    
     return (
         <>
         <button className="in" onClick={onOpen}>

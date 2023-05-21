@@ -29,7 +29,7 @@ const UpdateBook = ({id,setUpdateBook}) => {
     const dispatch = useDispatch()
     return (
 <>
-<button className="in" onClick={onOpen}>
+<button className="flex items-center space-x-2" onClick={onOpen}>
     <MdDriveFileRenameOutline/>
     <span>Rename</span>
 </button>

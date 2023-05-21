@@ -21,6 +21,7 @@ export const createEntry = async(id,value,setValue,type,dispatch,action,onClose)
             onClose()
         }
     } catch (err) {
+        console.log(err)
         notificationNOT(err.message)
     }
 }

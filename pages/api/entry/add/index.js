@@ -16,6 +16,7 @@ async function handler(req, res){
             data : post,
             message:"Successfully created"
         })
+
     }catch(err){
         res.status(500).json({
             success : false,

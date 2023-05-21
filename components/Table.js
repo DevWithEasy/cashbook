@@ -5,7 +5,7 @@ import Balance from './Balance';
 import EditEntry from './UpdateEntry';
 import DeleteEntry from './DeleteEntry';
 
-const Table = ({entries,setUpdateId,setDeleteId,setUpdate,setRemove}) => {
+const Table = ({entries}) => {
     const action = (id,setId,setView)=>{
         setId(id);
         setView(true);

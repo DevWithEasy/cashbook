@@ -2,36 +2,56 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { uploadPhoto } from '../libs/AllUserAction';
 import { login } from '../store/slice/authSlice';
-import Trying from './Trying';
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    Button,
+  } from '@chakra-ui/react'
 
-const UpdateProfilePhoto = ({setUpdatePhoto,handleFile,file,image}) => {
+const UpdateProfilePhoto = ({setUpdatePhoto,isOpen, onClose}) => {
     const user = useSelector(state=> state.auth.user)
-    const [loading,setLoading] = useState(false)
     const dispatch = useDispatch()
-    return (
-        <div className='add_new'>
-            <div className="">
-                <h3>
-                    <span>UPDATE PHOTO</span>
-                    <span className='close' onClick={()=>setUpdatePhoto(false)}>X</span>
-                </h3>
-                <hr />
+    const [image,setImage] = useState(null)
+    const [file,setFile] = useState(null)
+    const handleFile = (e)=>{
+        setFile(e.target.files[0])
+        const fileReader = new FileReader()
+        fileReader.onload =(e)=>{
+            setImage(e.target.result)
+        }
+        fileReader.readAsDataURL(e.target.files[0])
+    }
+    return (     
+        <>
+            <Modal isOpen={isOpen} onClose={onClose} isCentered>
+            <ModalOverlay />
+            <ModalContent>
+                <ModalHeader>Upload Profile Photo</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
                 <div className="input">
                     <div className="image">
                         <img src={image} alt=""/>
                     </div>
-                    <label htmlFor="number">Choose a photo :</label>
+                    <label htmlFor="file">Choose a photo :</label>
                     <input type="file" onChange={(e)=>handleFile(e)}/>
                 </div>
-                <hr />
-                <div className="submit">
-                    {
-                        loading && <Trying text='Uploading'/>
-                    }
-                    <button className='in' onClick={(e)=>uploadPhoto(e,user._id,file,setUpdatePhoto,setLoading,dispatch,login)}>UPDATE</button>
-                </div>
-            </div>
-        </div>
+                </ModalBody>
+    
+                <ModalFooter>
+                <Button  mr={3} onClick={onClose}>
+                    Cancel
+                </Button>
+                <Button colorScheme='blue' onClick={(e)=>uploadPhoto(e,user._id,file,setUpdatePhoto,dispatch,login)}>Upload</Button>
+                </ModalFooter>
+            </ModalContent>
+            </Modal>
+        </>
     );
 };
 

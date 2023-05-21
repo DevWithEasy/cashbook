@@ -18,13 +18,15 @@ import getAllEntry from "../../../libs/getAllEntry";
 import getSingleBook from "../../../libs/getSingleBook";
 import { addEntries, currentBook } from "../../../store/slice/bookSlice";
 import { useDisclosure } from '@chakra-ui/react';
+import {
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem,
+    Button
+  } from '@chakra-ui/react'
 
 export default function Books(){
-    const [setting,setSetting] = useState(false)
-    const [update,setUpdate] = useState(false)
-    const [remove,setRemove] = useState(false)
-    const [deleteId,setDeleteId] = useState("")
-    const [updateId,setUpdateId] = useState("")
     const dispatch = useDispatch()
     const router = useRouter()
     const { id } = router.query
@@ -40,17 +42,20 @@ export default function Books(){
             <Header/>
             <div className="book_info">
                 <h3>{book?.name}</h3>
-                <div className="">
-                    <button onClick={()=>setSetting(!setting)}>
+                <Menu>
+                    <MenuButton as={Button}>
                         <AiOutlineSetting size={20}/>
-                    </button>
-                </div>
-                {
-                    setting && <div className="setting">
-                        <UpdateBook/>
-                        <DeleteBook/>
-                    </div>
-                }
+                    </MenuButton>
+                    <MenuList p='4px'>
+                        <MenuItem className='rounded-md hover:bg-blue-500 hover:text-white transition-all duration-300'>
+                            <UpdateBook/>
+                        </MenuItem>
+                        <MenuItem className='rounded-md hover:bg-red-500 hover:text-white transition-all duration-300'>
+                            <DeleteBook/>
+                        </MenuItem>
+                    </MenuList>
+                </Menu>
+
             </div>
             <div className="search">
                 <div className="input">
@@ -64,7 +69,7 @@ export default function Books(){
                 </div>
             </div>
             <Balance entries={allEntries}/>
-            {allEntries.length === 0 ? <NoData/> : <Table entries={allEntries} setUpdateId={setUpdateId} setDeleteId={setDeleteId} setUpdate={setUpdate} setRemove={setRemove}/>}
+            {allEntries.length === 0 ? <NoData/> : <Table entries={allEntries} />}
             <Toaster/>
         </div>
     )

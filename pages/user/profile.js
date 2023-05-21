@@ -8,8 +8,10 @@ import Header from "../../components/Header";
 import UpdateProfile from "../../components/UpdateProfile";
 import UpdateProfilePhoto from "../../components/UpdateProfilePhoto";
 import handleInput from "../../utils/handleInput";
+import { useDisclosure } from "@chakra-ui/react";
 
 export default function Profile(){
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const user = useSelector(state=> state.auth.user)
     const dispatch = useDispatch()
     const [update,setUpdate] = useState(false)
@@ -41,7 +43,7 @@ export default function Profile(){
             <div className="info">
                 <div className="profile_image">
                     <img src={user?.image?.url} alt=""/>
-                    <button><AiOutlineCamera size={20} onClick={()=>setUpdatePhoto(true)}/></button>
+                    <button><AiOutlineCamera size={20} onClick={()=>{setUpdatePhoto(true);onOpen()}}/></button>
                 </div>
                 <div className="profile_text">
                     <p className="name">{user?.name}</p>
@@ -54,8 +56,8 @@ export default function Profile(){
                         <span>{user?.number}</span>
                     </p>
                     <div className="">
-                        <button onClick={()=>setUpdate(true)} className="update">Update profile</button>
-                        <button onClick={()=>setDeleteAccount(true)} className="delete">Account Delete</button>
+                        <UpdateProfile/>
+                        <DeleteAccount/>
                     </div>
                 </div>
                 <div className="change_password">
@@ -69,13 +71,7 @@ export default function Profile(){
                 </div>
             </div>
             {
-                update && <UpdateProfile setUpdate={setUpdate}/>
-            }
-            {
-                updatePhoto && <UpdateProfilePhoto setUpdatePhoto={setUpdatePhoto} handleFile={handleFile} file={file} image={image} />
-            }
-            {
-                deleteAccount && <DeleteAccount setDeleteAccount={setDeleteAccount}/>
+                updatePhoto && <UpdateProfilePhoto {...{setUpdatePhoto,handleFile,file,image,isOpen, onOpen, onClose}} />
             }
             <Toaster/>
         </div>

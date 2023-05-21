@@ -38,22 +38,20 @@ export const signin= async(e,value,router,setLoading,dispatch,action)=>{
     }
 }
 
-export const uploadPhoto=async(e,id,file,setView,setLoading,dispatch,action)=>{
+export const uploadPhoto=async(e,id,file,setView,dispatch,action)=>{
     e.preventDefault()
     try {
-        setLoading(true)
         const formData = new FormData()
         formData.append('id',id)
         formData.append("image",file)
         const res  = await axios.post(`/api/user/upload`,formData)
         if(res.data.data){
             notificationOK(res.data.message)
-            setLoading(false)
             dispatch(action(res.data.data))
             setView(false)
         }
     } catch (err) {
-        notificationNOT(error.response.data.message)
+        notificationNOT(err.response.data.message)
     }
 }
 export const updateProfile=async(e,value,setView,setLoading,dispatch,action)=>{

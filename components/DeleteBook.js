@@ -26,7 +26,7 @@ const DeleteBook = () => {
     const router = useRouter();
     return (
         <>
-      <button onClick={onOpen}>
+      <button  className='flex items-center space-x-2' onClick={onOpen}>
             <AiOutlineDelete/>
             <span>Delete</span>
         </button>
