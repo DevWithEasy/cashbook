@@ -71,14 +71,14 @@ const CashIn = ({id}) => {
   
             <ModalFooter>
               <Button 
-                onClick={()=>createEntryOther(book._id,value,setValue,"Credit",setLoading2,dispatch,addEntry)}
+                onClick={()=>createEntryOther(id,value,setValue,"Credit",setLoading2,dispatch,addEntry)}
                 colorScheme='blue'
                 mr={3}
             >
                 {loading2 ? <Spinner/> : <MdLibraryAdd/>}
             </Button>
                 <Button  
-                    onClick={()=>createEntry(book._id,value,setValue,'Credit',setLoading,dispatch,addEntry,onClose)}
+                    onClick={()=>createEntry(id,value,setValue,'Credit',setLoading,dispatch,addEntry,onClose)}
                     colorScheme='blue' 
                 >
                     {loading ? <Spinner/> : <MdAddCircle/>}

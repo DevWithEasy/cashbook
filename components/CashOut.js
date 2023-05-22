@@ -71,7 +71,7 @@ const CashOut = ({id}) => {
   
             <ModalFooter>
               <Button 
-                onClick={()=>createEntryOther(book._id,value,setValue,"Debit",setLoading2,dispatch,addEntry)}
+                onClick={()=>createEntryOther(id,value,setValue,"Debit",setLoading2,dispatch,addEntry)}
                 colorScheme='blue'
                 mr={3}
             >
@@ -79,7 +79,7 @@ const CashOut = ({id}) => {
                 
             </Button>
                 <Button  
-                    onClick={()=>createEntry(book._id,value,setValue,'Debit',setLoading,dispatch,addEntry,onClose)}
+                    onClick={()=>createEntry(id,value,setValue,'Debit',setLoading,dispatch,addEntry,onClose)}
                     colorScheme='blue' 
                 >
                     {loading ? <Spinner/> : <MdAddCircle/>}
