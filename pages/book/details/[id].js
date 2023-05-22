@@ -6,7 +6,7 @@ import {
     MenuList
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Toaster } from 'react-hot-toast';
 import { AiOutlineSetting } from 'react-icons/ai';
 import { useDispatch, useSelector } from "react-redux";
@@ -27,6 +27,7 @@ export default function Books(){
     const router = useRouter()
     const {id} = router.query
     const book = useSelector(state=>state.book.currentBook)
+    const [search,setSearch] = useState('')
 
     useEffect(()=>{
         if(id) {getSingleBook(id,dispatch,currentBook)}
@@ -57,7 +58,7 @@ export default function Books(){
             </div>
             <div className="search">
                 <div className="input">
-                    <input type="search" placeholder="Search by remarks ..."/>
+                    <input type="search" placeholder="Search by remarks ..." onChange={(e)=>setSearch(e.target.value)}/>
                 </div>
                 <div className="entry">
                     <div className="">
@@ -68,7 +69,7 @@ export default function Books(){
             </div>
             {book?.entries && <Balance entries={book?.entries}/>}
             {book?.entries?.length < 1 && <NoData/>}
-            {book?.entries &&  <Table entries={book?.entries} />}
+            {book?.entries &&  <Table entries={book?.entries} search={search}/>}
             <Toaster/>
         </div>
     )

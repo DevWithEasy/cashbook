@@ -1,10 +1,20 @@
 import initDatabase from "../../../../database/initDatabase";
+import Book from "../../../../database/model/Book";
 import Post from "../../../../database/model/Post";
 import authentication from "../../../../utils/authentication";
 
 async function handler(req, res){
     initDatabase()
     try{
+        const book = await Book.findById(req.body.book)
+        if(!book){
+            return res.status(404).json({
+                success : false,
+                status:404,
+                message:'Book not found'
+            })
+        }
+
         const newPost= new Post({
             ...req.body,
             user : req.user.id

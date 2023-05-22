@@ -40,19 +40,15 @@ export default function Home() {
       <div className='index'>
         <Header/>
         <div className="add_book">
-          {/* <button onClick={()=>setAdd(true)}>
-            <AiOutlinePlusCircle/>
-            <span>ADD BOOK</span>
-          </button> */}
           <AddBook/>
         </div>
         <div className="book_list">
           <div className="search">
-              <input type="search" placeholder='Search book name ...'/>
+              <input type="search" placeholder='Search book name ...' onChange={(e)=>setSearch(e.target.value)}/>
           </div>
           <div className="list">
               {
-                allBooks && allBooks.map(book =><Link key={book._id} href={`/book/details/${book._id}`}>
+                allBooks && allBooks.filter(book=> book.name.toLowerCase().includes(search)).map(book =><Link key={book._id} href={`/book/details/${book._id}`}>
                   <a>
                     <div key={book._id} className="book">
                       <FcDocument size={25} className=""/>

@@ -5,7 +5,7 @@ import Balance from './Balance';
 import EditEntry from './UpdateEntry';
 import DeleteEntry from './DeleteEntry';
 
-const Table = ({entries}) => {
+const Table = ({entries,search}) => {
     const action = (id,setId,setView)=>{
         setId(id);
         setView(true);
@@ -28,7 +28,7 @@ const Table = ({entries}) => {
         <div className="entry_list">
             <div className="space-y-2 pb-4">
                 {
-                    entries.map(entry=><div key={entry._id} className='border rounded bg-white'>
+                    entries.filter(entrie=> entrie.remark.toLowerCase().includes(search)).map(entry=><div key={entry._id} className='border rounded bg-white'>
                         <div className='realtive flex justify-between items-center bg-gray-300 px-2 py-1'>
                             <span>{new Date(entry.createdAt).toDateString()}</span>
                             <div className="flex items-center space-x-4">
