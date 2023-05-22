@@ -44,7 +44,7 @@ export default function Home() {
         </div>
         <div className="book_list">
           <div className="search">
-              <input type="search" placeholder='Search book name ...' onChange={(e)=>setSearch(e.target.value)}/>
+              <input type="search" placeholder='Search book name ...' onChange={(e)=>setSearch(e.target.value.toLocaleLowerCase())}/>
           </div>
           <div className="list">
               {

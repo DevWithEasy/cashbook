@@ -20,14 +20,14 @@ import { createEntry, createEntryOther } from '../libs/allEntryAction';
 import { addEntry } from '../store/slice/bookSlice';
 import handleInput from '../utils/handleInput';
 
-const CashIn = () => {
+const CashIn = ({id}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [loading,setLoading] = useState(false)
     const [loading2,setLoading2] = useState(false)
     const book = useSelector(state=>state.book.currentBook)
     const dispatch = useDispatch()
     const [value,setValue] = useState({
-        book : book?._id,
+        book : id,
         amount : '',
         entryType : 'Credit',
         remark : '',

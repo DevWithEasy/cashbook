@@ -58,12 +58,12 @@ export default function Books(){
             </div>
             <div className="search">
                 <div className="input">
-                    <input type="search" placeholder="Search by remarks ..." onChange={(e)=>setSearch(e.target.value)}/>
+                    <input type="search" placeholder="Search by remarks ..." onChange={(e)=>setSearch(e.target.value.toLocaleLowerCase())}/>
                 </div>
                 <div className="entry">
                     <div className="">
-                        <CashIn/>
-                        <CashOut/>
+                        <CashIn {...{id}}/>
+                        <CashOut {...{id}}/>
                     </div>
                 </div>
             </div>

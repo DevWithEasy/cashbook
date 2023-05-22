@@ -7,6 +7,7 @@ async function handler(req, res){
     initDatabase()
     try{
         const book = await Book.findById(req.body.book)
+        console.log(book)
         if(!book){
             return res.status(404).json({
                 success : false,

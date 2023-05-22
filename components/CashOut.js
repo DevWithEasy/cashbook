@@ -21,14 +21,14 @@ import {
 } from '@chakra-ui/react';
 import { AiOutlineMinus } from 'react-icons/ai';
 
-const CashOut = () => {
+const CashOut = ({id}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [loading,setLoading] = useState(false)
     const [loading2,setLoading2] = useState(false)
     const book = useSelector(state=>state.book.currentBook)
     const dispatch = useDispatch()
     const [value,setValue] = useState({
-        book : book?._id,
+        book : id,
         amount : '',
         entryType : 'Debit',
         remark : '',
